@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Productividad · Taller Ballesteros y Pazmiño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&family=Saira+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#0E2A66; --azul-2:#1D4ED8; --azul-soft:#EAF0FF;
+    --oro:#E6B229; --oro-dark:#B8860B;
+    --bg:#F6F8FC; --panel:#FFFFFF; --ink:#16203A; --muted:#697089; --line:#E3E8F2;
+    --ok:#16A34A; --warn:#E08A00; --slate:#94A0B8; --done:#1D4ED8; --danger:#D14343;
+    --shadow:0 6px 22px rgba(14,42,102,.10); --radius:14px;
+  }
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  body{font-family:"Inter",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45}
+  h1,h2,h3,.display{font-family:"Saira",system-ui,sans-serif;letter-spacing:.2px}
+  .num{font-family:"Saira Condensed","Saira",sans-serif;font-weight:700;font-variant-numeric:tabular-nums}
+  button{font-family:inherit;cursor:pointer} input,select{font-family:inherit;font-size:15px}
+
+  .topbar{background:var(--azul);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30;box-shadow:0 2px 12px rgba(14,42,102,.25)}
+  .logo{width:42px;height:42px;border-radius:9px;flex:0 0 auto;background:linear-gradient(135deg,var(--oro),#caa015);color:var(--azul);font-family:"Saira";font-weight:700;font-size:18px;display:grid;place-items:center;letter-spacing:-1px;border:1.5px solid rgba(255,255,255,.25);overflow:hidden}
+  .logo img{width:100%;height:100%;object-fit:contain;background:#fff}
+  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand b{font-family:"Saira";font-weight:700;font-size:16px}
+  .brand span{font-size:11px;color:#AFC0E8;letter-spacing:.4px;text-transform:uppercase}
+  .topbar .spacer{flex:1}
+  .pill{font-size:11px;padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#fff;white-space:nowrap}
+  .pill.live{background:rgba(22,163,74,.22);border-color:rgba(22,163,74,.5)}
+  .pill.local{background:rgba(230,178,41,.18);border-color:rgba(230,178,41,.5);color:#FFE6A6}
+  .topbar button.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:9px;padding:7px 11px;font-size:13px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 80px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .pad{padding:18px}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--oro-dark);font-weight:600;font-family:"Saira"}
+  .muted{color:var(--muted)} .row{display:flex;gap:12px;flex-wrap:wrap}
+
+  .gate{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .role{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;box-shadow:var(--shadow);transition:.15s;border-top:3px solid var(--azul)}
+  .role:hover{transform:translateY(-2px);border-top-color:var(--oro)}
+  .role .ic{font-size:30px} .role h3{margin:8px 0 4px} .role p{margin:0;font-size:13px;color:var(--muted)}
+  .role button{margin-top:14px;width:100%;background:var(--azul);color:#fff;border:none;border-radius:10px;padding:11px;font-weight:600}
+  .hero h1{font-size:26px;margin:0 0 4px} .hero p{margin:0;color:var(--muted);max-width:64ch}
+
+  .btn{border:none;border-radius:10px;padding:11px 16px;font-weight:600;font-size:15px}
+  .btn-primary{background:var(--azul);color:#fff} .btn-gold{background:var(--oro);color:var(--azul)}
+  .btn-line{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn-ok{background:var(--ok);color:#fff} .btn-warn{background:var(--warn);color:#fff}
+  .btn-danger{background:#fff;border:1px solid var(--danger);color:var(--danger)}
+  .btn:disabled{opacity:.45;cursor:not-allowed} .btn-sm{padding:8px 11px;font-size:13px}
+
+  label.f{display:block;font-size:12px;color:var(--muted);margin:0 0 4px;font-weight:500}
+  .field{margin-bottom:12px}
+  input.t,select.t{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+  input.t:focus,select.t:focus{outline:none;border-color:var(--azul-2);box-shadow:0 0 0 3px rgba(29,78,216,.12)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+  .order{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-bottom:12px;border-left:4px solid var(--azul)}
+  .order.paralizado{border-left-color:var(--danger);background:#FFF7F7}
+  .order .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .order .veh{font-family:"Saira";font-weight:600;font-size:16px}
+  .order .ot{font-size:11px;color:var(--muted)}
+  .subjob{border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-top:8px;background:#FBFCFF}
+  .subjob.en_curso{border-color:var(--ok);background:#F2FBF5}
+  .subjob.pausado{border-color:var(--warn);background:#FFFBF2}
+  .subjob.terminado{border-color:var(--done)}
+  .subjob .r{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+
+  .job{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-bottom:12px;border-left:4px solid var(--slate)}
+  .job.en_curso{border-left-color:var(--ok)} .job.pausado{border-left-color:var(--warn)} .job.terminado{border-left-color:var(--done)}
+  .job .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .job .veh{font-family:"Saira";font-weight:600;font-size:16px}
+  .tag{font-size:11px;padding:3px 8px;border-radius:999px;font-weight:600;white-space:nowrap}
+  .tag.Express{background:#EAF0FF;color:var(--azul-2)} .tag.Mantenimiento{background:#FFF3D6;color:var(--oro-dark)} .tag.Especializado{background:#E9F8EE;color:var(--ok)}
+  .status{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .status.asignado{color:var(--slate)} .status.en_curso{color:var(--ok)} .status.pausado{color:var(--warn)} .status.terminado{color:var(--done)}
+  .timeline{display:flex;gap:8px;margin:10px 0;font-size:13px;flex-wrap:wrap}
+  .timeline .b{background:#F3F6FC;border:1px solid var(--line);border-radius:8px;padding:6px 9px}
+  .timeline .b b{display:block;font-family:"Saira Condensed";font-size:18px;color:var(--azul)}
+  .controls{display:flex;gap:8px;flex-wrap:wrap}
+
+  .earn{background:linear-gradient(135deg,var(--azul),#15347e);color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .earn .lbl{font-size:12px;color:#AFC0E8;text-transform:uppercase;letter-spacing:1px}
+  .earn .big{font-family:"Saira Condensed";font-size:44px;line-height:1;color:var(--oro);margin:4px 0}
+  .earn .sub{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap}
+  .earn .sub div{font-size:13px;color:#CBD8F5} .earn .sub b{display:block;font-family:"Saira Condensed";font-size:22px;color:#fff}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .kpi .v{font-family:"Saira Condensed";font-size:28px;color:var(--azul);margin-top:2px}
+  .kpi .v small{font-size:13px;color:var(--muted)} .kpi.gold{border-top:3px solid var(--oro)}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line)}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .bar{height:8px;border-radius:5px;background:#EEF2F9;overflow:hidden} .bar > i{display:block;height:100%;background:var(--azul-2)}
+  .util .bar>i{background:var(--ok)} .util.low .bar>i{background:var(--danger)} .util.mid .bar>i{background:var(--warn)}
+
+  .seg{display:inline-flex;background:#EEF2F9;border-radius:9px;padding:3px;gap:3px;flex-wrap:wrap}
+  .seg button{border:none;background:transparent;padding:7px 12px;border-radius:7px;font-size:13px;font-weight:600;color:var(--muted)}
+  .seg button.on{background:#fff;color:var(--azul);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+  .goal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .goalcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .goalcard .t{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .goalcard .v{font-family:"Saira Condensed";font-size:24px;margin:4px 0 6px}
+  .goalcard .meta{font-size:12px;color:var(--muted)}
+  .check{font-weight:700} .check.ok{color:var(--ok)} .check.no{color:var(--danger)}
+
+  .donut{width:120px;height:120px;border-radius:50%;flex:0 0 auto}
+  .legend{font-size:13px} .legend div{display:flex;align-items:center;gap:6px;margin:3px 0}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .trend{display:flex;gap:6px;align-items:flex-end;height:140px;padding-top:6px}
+  .trend .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+  .trend .col > i{width:70%;background:var(--azul-2);border-radius:5px 5px 0 0;min-height:2px}
+  .trend .col.cur > i{background:var(--oro)}
+  .trend .lab{font-size:10px;color:var(--muted)}
+
+  .empty{text-align:center;padding:30px;color:var(--muted)} .empty .ic{font-size:34px;opacity:.5}
+  .modal-bg{position:fixed;inset:0;background:rgba(14,42,102,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:14px;max-width:460px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:88vh;overflow:auto}
+  .pinpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .pinpad button{padding:16px;font-size:20px;font-family:"Saira Condensed";border:1px solid var(--line);background:#fff;border-radius:10px}
+  .pindots{font-family:"Saira Condensed";font-size:24px;text-align:center;height:32px;color:var(--azul)}
+  .note{font-size:12.5px;color:var(--muted);background:#FBFCFF;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
+  .sectiontitle{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;gap:10px;flex-wrap:wrap}
+  .sectiontitle h2{font-size:19px;margin:0}
+  .reasons button{width:100%;text-align:left;margin-bottom:8px}
+  @media(max-width:780px){.gate{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.goal{grid-template-columns:1fr}.three{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo" id="logoBox">BP</div>
+    <div class="brand"><b>Ballesteros y Pazmiño</b><span>Productividad de taller</span></div>
+    <div class="spacer"></div>
+    <span id="modeBadge" class="pill local">Modo local</span>
+    <button class="ghost" id="logoutBtn" style="display:none">Salir</button>
+  </div>
+  <div class="wrap" id="app"></div>
+
+  <div class="modal-bg" id="pinModal"><div class="modal">
+    <h2 id="pinTitle" style="margin:0 0 2px">Ingresar PIN</h2>
+    <p class="muted" id="pinSub" style="margin:0 0 8px;font-size:13px"></p>
+    <div class="pindots" id="pinDots">····</div>
+    <div class="pinpad" id="pinPad"></div>
+    <button class="btn btn-line" style="width:100%;margin-top:10px" onclick="closePin()">Cancelar</button>
+  </div></div>
+
+<script type="module">
+/* ===================== CONFIGURACIÓN ===================== */
+// Estos valores son los predeterminados; casi todo es editable desde Ajustes.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyA_iLgpC3P8lug-ZTVgfOv26Ev8dNvLEwk",
+  authDomain: "control-taller-byp.firebaseapp.com",
+  projectId: "control-taller-byp",
+  storageBucket: "control-taller-byp.firebasestorage.app",
+  messagingSenderId: "318853255661",
+  appId: "1:318853255661:web:6653c03fc1833feca657e4",
+  measurementId: "G-PMFX2ENE3X"
+};
+const DEFAULTS = {
+  rate:25, commission:0.30,
+  metaIndividual:3000,        // meta de MO facturada por técnico / MES
+  horasDisponibles:40,        // horas disponibles por técnico / SEMANA
+  metaFacturacionMensual:24000,
+  metaMixMO:45,               // % objetivo de mano de obra sobre el total
+  metaMarcasExpertas:75,      // % objetivo Hyundai + Kia
+  coordPin:"2468", tableroPin:"1357",
+  logo:null
+};
+const TECNICOS_INICIALES = [
+  {id:"t1",nombre:"Mateo Untuña",pin:"1111",activo:true},
+  {id:"t2",nombre:"David Caiza",pin:"2222",activo:true},
+  {id:"t3",nombre:"Cristian Safla",pin:"3333",activo:true},
+  {id:"t4",nombre:"Sebastián Valdivieso",pin:"4444",activo:true},
+];
+const PAUSAS = ["Almuerzo","Falta de repuesto","Falta de autorización","Servicio externo (rectificadora)","Otro"];
+
+/* ===================== CAPA DE DATOS ===================== */
+const hasCloud = !!(FIREBASE_CONFIG && FIREBASE_CONFIG.projectId);
+let DB;
+function makeLocalDB(){
+  const read=k=>{try{return JSON.parse(localStorage.getItem("byp2_"+k))}catch(e){return null}};
+  const arr=k=>read(k)||[]; const write=(k,v)=>localStorage.setItem("byp2_"+k,JSON.stringify(v));
+  if(!read("techs")) write("techs",TECNICOS_INICIALES);
+  if(!read("settings")) write("settings",DEFAULTS);
+  const subs={jobs:[],techs:[],orders:[],settings:[]};
+  const emit=c=>subs[c].forEach(cb=>cb(c==="settings"?(read("settings")||DEFAULTS):arr(c)));
+  return {mode:"local",
+    onSettings(cb){subs.settings.push(cb);cb(read("settings")||DEFAULTS);},
+    saveSettings(s){write("settings",s);emit("settings");},
+    onTechs(cb){subs.techs.push(cb);cb(arr("techs"));},
+    saveTech(t){const a=arr("techs");const i=a.findIndex(x=>x.id===t.id);i>=0?a[i]=t:a.push(t);write("techs",a);emit("techs");},
+    delTech(id){write("techs",arr("techs").filter(x=>x.id!==id));emit("techs");},
+    onOrders(cb){subs.orders.push(cb);cb(arr("orders"));},
+    saveOrder(o){const a=arr("orders");const i=a.findIndex(x=>x.id===o.id);i>=0?a[i]=o:a.push(o);write("orders",a);emit("orders");},
+    delOrder(id){write("orders",arr("orders").filter(x=>x.id!==id));emit("orders");},
+    onJobs(cb){subs.jobs.push(cb);cb(arr("jobs"));},
+    saveJob(j){const a=arr("jobs");const i=a.findIndex(x=>x.id===j.id);i>=0?a[i]=j:a.push(j);write("jobs",a);emit("jobs");},
+    delJob(id){write("jobs",arr("jobs").filter(x=>x.id!==id));emit("jobs");},
+  };
+}
+async function makeCloudDB(){
+  const {initializeApp}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+  const fs=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  const app=initializeApp(FIREBASE_CONFIG); const db=fs.getFirestore(app);
+  const ts=await fs.getDocs(fs.collection(db,"techs"));
+  if(ts.empty){for(const t of TECNICOS_INICIALES)await fs.setDoc(fs.doc(db,"techs",t.id),t);}
+  const st=await fs.getDoc(fs.doc(db,"settings","main"));
+  if(!st.exists())await fs.setDoc(fs.doc(db,"settings","main"),DEFAULTS);
+  return {mode:"cloud",
+    onSettings(cb){fs.onSnapshot(fs.doc(db,"settings","main"),d=>cb(d.data()||DEFAULTS));},
+    saveSettings(s){fs.setDoc(fs.doc(db,"settings","main"),s);},
+    onTechs(cb){fs.onSnapshot(fs.collection(db,"techs"),s=>cb(s.docs.map(d=>d.data())));},
+    saveTech(t){fs.setDoc(fs.doc(db,"techs",t.id),t);},
+    delTech(id){fs.deleteDoc(fs.doc(db,"techs",id));},
+    onOrders(cb){fs.onSnapshot(fs.collection(db,"orders"),s=>cb(s.docs.map(d=>d.data())));},
+    saveOrder(o){fs.setDoc(fs.doc(db,"orders",o.id),o);},
+    delOrder(id){fs.deleteDoc(fs.doc(db,"orders",id));},
+    onJobs(cb){fs.onSnapshot(fs.collection(db,"jobs"),s=>cb(s.docs.map(d=>d.data())));},
+    saveJob(j){fs.setDoc(fs.doc(db,"jobs",j.id),j);},
+    delJob(id){fs.deleteDoc(fs.doc(db,"jobs",id));},
+  };
+}
+
+/* ===================== ESTADO ===================== */
+let SET={...DEFAULTS}, TECHS=[], ORDERS=[], JOBS=[];
+let session=null, dashPeriod="anio", dashYear=new Date().getFullYear(), coordShowClosed=false;
+
+/* ===================== UTILIDADES ===================== */
+const $=s=>document.querySelector(s); const app=$("#app");
+const uid=()=>Math.random().toString(36).slice(2,9);
+const money=n=>"$"+(Number(n)||0).toLocaleString("es-EC",{minimumFractionDigits:2,maximumFractionDigits:2});
+const hrs=n=>(Number(n)||0).toFixed(1)+" h";
+const num=v=>Number(v)||0;
+function jobSecs(j){let s=0;const now=Date.now();(j.segments||[]).forEach(g=>s+=((g.e||now)-g.s)/1000);return s;}
+const jobReal=j=>jobSecs(j)/3600;
+const fmtClock=secs=>{secs=Math.max(0,Math.floor(secs));const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;};
+function monday(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setHours(0,0,0,0);x.setDate(x.getDate()-day);return x.getTime();}
+const billed=j=>num(j.horasFacturadas)*num(SET.rate);
+const jobTotal=j=>billed(j)+num(j.valorRepuestos)+num(j.valorServicioExterno);
+const labelEstado=e=>({asignado:"Asignado",en_curso:"En curso",pausado:"En pausa",terminado:"Terminado"}[e]||e);
+function tsToInput(ts){const d=new Date(ts||Date.now());const p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;}
+const inputToTs=v=>v?new Date(v).getTime():null;
+const fmtDT=ts=>ts?new Date(ts).toLocaleString("es-EC",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"—";
+const jobsOf=oid=>JOBS.filter(j=>j.orderId===oid);
+const getOrder=id=>JSON.parse(JSON.stringify(ORDERS.find(o=>o.id===id)));
+const getJob=id=>JSON.parse(JSON.stringify(JOBS.find(j=>j.id===id)));
+
+function orderInPeriod(o){
+  const ref=o.ingresoAt||o.createdAt||Date.now(); const d=new Date(ref); const now=new Date();
+  if(dashPeriod==="semana") return ref>=monday(now);
+  if(dashPeriod==="mes") return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
+  if(dashPeriod==="anio") return d.getFullYear()===dashYear;
+  return true;
+}
+function weeksInPeriod(){
+  if(dashPeriod==="semana")return 1;
+  if(dashPeriod==="mes")return 4.345;
+  if(dashPeriod==="anio")return 52;
+  const yrs=new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear())); return Math.max(1,yrs.size)*52;
+}
+function metaFactPeriodo(){
+  const m=num(SET.metaFacturacionMensual);
+  if(dashPeriod==="semana")return m/4.345; if(dashPeriod==="mes")return m; if(dashPeriod==="anio")return m*12;
+  const yrs=new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear())); return m*12*Math.max(1,yrs.size);
+}
+
+/* ===================== ARRANQUE ===================== */
+(async function boot(){
+  try{ DB=hasCloud?await makeCloudDB():makeLocalDB(); }
+  catch(e){ console.error(e); DB=makeLocalDB(); alert("No se pudo conectar a la nube; sigo en modo local en este dispositivo. Revisa tu config de Firebase."); }
+  $("#modeBadge").textContent=DB.mode==="cloud"?"Nube · en vivo":"Modo local";
+  $("#modeBadge").className="pill "+(DB.mode==="cloud"?"live":"local");
+  DB.onSettings(s=>{SET={...DEFAULTS,...s};applyLogo();render();});
+  DB.onTechs(t=>{TECHS=t.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre));render();});
+  DB.onOrders(o=>{ORDERS=o;render();});
+  DB.onJobs(j=>{JOBS=j;render();});
+  buildPinPad(); setInterval(tick,1000);
+})();
+$("#logoutBtn").onclick=()=>{session=null;$("#logoutBtn").style.display="none";render();};
+function applyLogo(){const b=$("#logoBox");if(SET.logo){b.innerHTML=`<img src="${SET.logo}" alt="logo">`;}else{b.textContent="BP";}}
+
+/* ===================== RENDER ===================== */
+function render(){
+  if(!session){renderGate();return;}
+  $("#logoutBtn").style.display="inline-block";
+  if(session.role==="coord")renderCoord();
+  else if(session.role==="tech")renderTech();
+  else renderDash();
+}
+function renderGate(){
+  app.innerHTML=`<div class="hero"><span class="eyebrow">Hyundai · Kia · Sur de Quito</span>
+    <h1 class="display">Control de productividad por técnico</h1>
+    <p>Un vehículo (una OT) puede tener varios trabajos. Asigna mano de obra, mide tiempos reales y evalúa MOU, eficiencia y productividad. El pago se calcula sobre horas facturadas, no sobre el cronómetro.</p></div>
+    <div class="gate">
+      <div class="role"><div class="ic">🧰</div><h3>Técnico</h3><p>Activa, pausa (con causa) y termina tus trabajos. Mira tus horas y tu mano de obra facturada.</p><button onclick="pickTech()">Entrar como técnico</button></div>
+      <div class="role"><div class="ic">📋</div><h3>Coordinador</h3><p>Crea órdenes por vehículo, agrega trabajos a la misma OT y cierra facturando.</p><button onclick="askPin('coord')">Entrar como coordinador</button></div>
+      <div class="role"><div class="ic">📊</div><h3>Tablero</h3><p>Indicadores, metas, mezcla, marcas y exportación a Excel.</p><button onclick="askPin('dash')">Ver tablero</button></div>
+    </div>`;
+}
+
+/* ---------- TÉCNICO ---------- */
+function renderTech(){
+  const tech=TECHS.find(t=>t.id===session.techId); if(!tech){session=null;return render();}
+  const mine=JOBS.filter(j=>j.tecnicoId===tech.id&&j.estado!=="terminado");
+  const wk=JOBS.filter(j=>j.tecnicoId===tech.id&&(j.finishedAt?j.finishedAt:j.createdAt)>=monday(new Date()));
+  const billedH=wk.reduce((s,j)=>s+num(j.horasFacturadas),0);
+  const moFact=billedH*num(SET.rate);
+  const realH=wk.reduce((s,j)=>s+jobReal(j),0);
+  const active=mine.find(j=>j.estado==="en_curso");
+  app.innerHTML=`
+    <div class="earn">
+      <div class="lbl">Hola, ${tech.nombre.split(" ")[0]} · tu semana</div>
+      <div class="big">${money(moFact)}</div>
+      <div class="sub">
+        <div>Mano de obra facturada<b>${billedH.toFixed(1)} h</b></div>
+        <div>Horas trabajadas<b>${realH.toFixed(1)} h</b></div>
+        <div>Trabajo activo<b id="liveClock">${active?fmtClock(jobSecs(active)):"—"}</b></div>
+      </div>
+    </div>
+    <div class="sectiontitle" style="margin-top:22px"><h2>Mis trabajos</h2></div>
+    <div>${mine.length?mine.map(techJobCard).join(""):emptyState("🔧","No tienes trabajos asignados","Cuando el coordinador te asigne uno, aparecerá aquí.")}</div>`;
+}
+function techJobCard(j){
+  const o=ORDERS.find(x=>x.id===j.orderId)||{};
+  return `<div class="job ${j.estado}">
+    <div class="head"><div><div class="veh">${o.marca||"—"} ${o.modelo||""} <span class="ot">· OT ${o.ot||"s/n"} · ${o.placa||""}</span></div>
+      <div style="font-size:14px;margin-top:2px">${j.moDesc||""}</div></div>
+      <span class="tag ${j.tipo||"Express"}">${j.tipo||"Express"}</span></div>
+    <div class="timeline">
+      <div class="b">Estándar<b>${hrs(j.horasAsignadas)}</b></div>
+      <div class="b">Tiempo real<b class="clk" data-id="${j.id}">${fmtClock(jobSecs(j))}</b></div>
+      <div class="b">Estado<b style="font-size:13px;color:var(--${j.estado==='en_curso'?'ok':j.estado==='pausado'?'warn':'slate'})">${labelEstado(j.estado)}${j.estado==='pausado'&&j.pauseReason?' · '+j.pauseReason:''}</b></div>
+    </div>
+    <div class="controls">
+      ${j.estado==="asignado"?`<button class="btn btn-ok" onclick="startJob('${j.id}')">▶ Iniciar</button>`:""}
+      ${j.estado==="en_curso"?`<button class="btn btn-warn" onclick="askPause('${j.id}')">⏸ Pausar</button>`:""}
+      ${j.estado==="pausado"?`<button class="btn btn-ok" onclick="resumeJob('${j.id}')">▶ Reanudar</button>`:""}
+      ${j.estado!=="terminado"?`<button class="btn btn-line" onclick="finishJob('${j.id}')">✓ Terminar</button>`:""}
+    </div></div>`;
+}
+window.startJob=id=>{const j=getJob(id);j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
+window.askPause=id=>{ modal(`<h2 style="margin:0 0 10px">¿Por qué pausas?</h2><div class="reasons">${PAUSAS.map(r=>`<button class="btn btn-line" onclick="pauseJob('${id}','${r.replace(/'/g,"")}')">${r}</button>`).join("")}</div><button class="btn btn-line" style="width:100%" onclick="closeModal()">Cancelar</button>`); };
+window.pauseJob=(id,reason)=>{closeModal();const j=getJob(id);const seg=(j.segments||[]).find(s=>!s.e);if(seg){seg.e=Date.now();seg.reason=reason;}j.estado="pausado";j.pauseReason=reason;DB.saveJob(j);};
+window.resumeJob=id=>{const j=getJob(id);j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
+window.finishJob=id=>{const j=getJob(id);const seg=(j.segments||[]).find(s=>!s.e);if(seg)seg.e=Date.now();j.estado="terminado";j.finishedAt=Date.now();j.pauseReason=null;DB.saveJob(j);alert("Trabajo terminado. El coordinador confirmará las horas facturadas al cerrar la orden.");};
+
+/* ---------- COORDINADOR ---------- */
+function renderCoord(){
+  const open=ORDERS.filter(o=>!o.salidaAt).sort((a,b)=>(a.ingresoAt||0)-(b.ingresoAt||0));
+  const closed=ORDERS.filter(o=>o.salidaAt).sort((a,b)=>(b.salidaAt||0)-(a.salidaAt||0)).slice(0,15);
+  app.innerHTML=`
+  <div class="row" style="align-items:flex-start">
+    <div class="panel pad" style="flex:1;min-width:300px">
+      <span class="eyebrow">Nuevo ingreso</span><h2 style="margin:2px 0 14px">Registrar vehículo (OT)</h2>
+      <div class="two">
+        <div class="field"><label class="f">N° de OT</label><input class="t" id="o_ot" placeholder="142"></div>
+        <div class="field"><label class="f">Placa</label><input class="t" id="o_placa" placeholder="PBX1234"></div>
+      </div>
+      <div class="two">
+        <div class="field"><label class="f">Marca</label><input class="t" id="o_marca" value="Hyundai"></div>
+        <div class="field"><label class="f">Modelo</label><input class="t" id="o_modelo" placeholder="Tucson"></div>
+      </div>
+      <div class="two">
+        <div class="field"><label class="f">Año</label><input class="t" id="o_anio" placeholder="2019"></div>
+        <div class="field"><label class="f">Cliente</label><input class="t" id="o_cliente" placeholder="Nombre"></div>
+      </div>
+      <div class="field"><label class="f">Fecha y hora de ingreso</label><input class="t" id="o_ing" type="datetime-local" value="${tsToInput(Date.now())}"></div>
+      <button class="btn btn-primary" style="width:100%" onclick="createOrder()">Registrar ingreso</button>
+      <div class="note">Después de registrar el vehículo, agrégale uno o varios trabajos (misma OT). El tablero lo contará como <b>un solo auto</b> con su facturación sumada.</div>
+      <div class="row" style="margin-top:14px"><button class="btn btn-line btn-sm" style="flex:1" onclick="openSettings()">⚙ Ajustes</button><button class="btn btn-line btn-sm" style="flex:1" onclick="openTeam()">👷 Equipo</button></div>
+    </div>
+
+    <div style="flex:1.4;min-width:330px">
+      <div class="sectiontitle"><h2>En taller (${open.length})</h2></div>
+      <div>${open.length?open.map(orderCard).join(""):emptyState("🚗","Sin vehículos en taller","Registra un ingreso para empezar.")}</div>
+      <div class="sectiontitle" style="margin-top:18px"><h2 style="font-size:17px">Entregados</h2>
+        <button class="btn btn-line btn-sm" onclick="coordShowClosed=!coordShowClosed;render()">${coordShowClosed?"Ocultar":"Mostrar"}</button></div>
+      ${coordShowClosed?`<div>${closed.length?closed.map(orderCard).join(""):'<p class="muted">Aún no hay entregados.</p>'}</div>`:""}
+    </div>
+  </div>`;
+}
+function orderHoras(o){const js=jobsOf(o.id);return{asig:js.reduce((s,j)=>s+num(j.horasAsignadas),0),fact:js.reduce((s,j)=>s+num(j.horasFacturadas),0),total:js.reduce((s,j)=>s+jobTotal(j),0)};}
+function isParalizado(o){if(o.salidaAt)return false;const js=jobsOf(o.id);if(!js.length)return false;const blocked=js.some(j=>j.estado==="pausado"&&/repuesto|autoriza|externo/i.test(j.pauseReason||""));const noActive=!js.some(j=>j.estado==="en_curso");const old=(Date.now()-(o.ingresoAt||0))>24*3600*1000;return blocked||(noActive&&old&&js.some(j=>j.estado!=="terminado"));}
+function orderCard(o){
+  const js=jobsOf(o.id); const h=orderHoras(o); const par=isParalizado(o);
+  const enTaller=o.salidaAt?((o.salidaAt-o.ingresoAt)/3600000):((Date.now()-(o.ingresoAt||Date.now()))/3600000);
+  return `<div class="order ${par?'paralizado':''}">
+    <div class="head">
+      <div><div class="veh">${o.marca||"—"} ${o.modelo||""} <span class="ot">· OT ${o.ot||"s/n"} · ${o.placa||""}</span></div>
+        <div class="muted" style="font-size:12.5px;margin-top:2px">Ingreso ${fmtDT(o.ingresoAt)} · ${o.salidaAt?("entregado "+fmtDT(o.salidaAt)):(enTaller.toFixed(1)+" h en taller")} ${par?'· <b style="color:var(--danger)">PARALIZADO</b>':''}</div></div>
+      <div style="text-align:right"><div class="num" style="font-size:18px;color:var(--azul)">${money(h.total)}</div><div class="muted" style="font-size:11px">total OT</div></div>
+    </div>
+    ${js.map(j=>{const t=TECHS.find(x=>x.id===j.tecnicoId);return `<div class="subjob ${j.estado}"><div class="r">
+        <div><b>${j.moDesc}</b> <span class="tag ${j.tipo}">${j.tipo}</span><div class="muted" style="font-size:12px">${t?t.nombre:"?"} · estándar ${hrs(j.horasAsignadas)} · real <span class="clk" data-id="${j.id}">${fmtClock(jobSecs(j))}</span> · <span class="status ${j.estado}">${labelEstado(j.estado)}</span>${j.estado==='pausado'&&j.pauseReason?' ('+j.pauseReason+')':''}</div></div>
+        <div style="text-align:right">${j.horasFacturadas!=null?('<div class="num">'+money(billed(j))+'</div><div class="muted" style="font-size:11px">'+hrs(j.horasFacturadas)+' fact.</div>'):'<button class="btn btn-gold btn-sm" onclick="openClose(\''+j.id+'\')">Facturar</button>'}</div>
+      </div></div>`;}).join("")}
+    <div class="controls" style="margin-top:10px">
+      <button class="btn btn-primary btn-sm" onclick="openAddJob('${o.id}')">+ Agregar trabajo</button>
+      ${!o.salidaAt?`<button class="btn btn-ok btn-sm" onclick="openSalida('${o.id}')">🚚 Marcar salida</button>`:""}
+      <button class="btn btn-danger btn-sm" onclick="askDeleteOrder('${o.id}')">Eliminar OT</button>
+    </div></div>`;
+}
+window.createOrder=()=>{
+  const v=s=>$(s).value.trim();
+  if(!v("#o_placa")&&!v("#o_ot")){alert("Ingresa al menos placa u OT.");return;}
+  const o={id:uid(),ot:v("#o_ot"),placa:v("#o_placa").toUpperCase(),marca:v("#o_marca"),modelo:v("#o_modelo"),anio:v("#o_anio"),cliente:v("#o_cliente"),ingresoAt:inputToTs($("#o_ing").value)||Date.now(),salidaAt:null,createdAt:Date.now()};
+  DB.saveOrder(o);
+  ["#o_ot","#o_placa","#o_modelo","#o_anio","#o_cliente"].forEach(s=>$(s).value="");
+  setTimeout(()=>openAddJob(o.id),120);
+};
+window.openAddJob=oid=>{
+  const o=ORDERS.find(x=>x.id===oid)||{ot:"",marca:"",modelo:""}; const opts=TECHS.filter(t=>t.activo).map(t=>`<option value="${t.id}">${t.nombre}</option>`).join("");
+  modal(`<h2 style="margin:0 0 4px">Agregar trabajo</h2><p class="muted" style="margin:0 0 12px;font-size:13px">${o.marca} ${o.modelo} · OT ${o.ot||""}</p>
+    <div class="field"><label class="f">Mano de obra</label><input class="t" id="j_mo" placeholder="Ej. Cambio de pastillas"></div>
+    <div class="three">
+      <div class="field"><label class="f">Horas estándar</label><input class="t" id="j_h" type="number" step="0.25" placeholder="0.5"></div>
+      <div class="field"><label class="f">Tipo</label><select class="t" id="j_tipo"><option>Express</option><option>Mantenimiento</option><option>Especializado</option></select></div>
+      <div class="field"><label class="f">Técnico</label><select class="t" id="j_tec">${opts}</select></div>
+    </div>
+    <div class="row"><button class="btn btn-primary" style="flex:1" onclick="addJob('${oid}')">Asignar</button><button class="btn btn-line" onclick="closeModal()">Cerrar</button></div>`);
+};
+window.addJob=oid=>{
+  const mo=$("#j_mo").value.trim(); if(!mo){alert("Escribe la mano de obra.");return;}
+  const j={id:uid(),orderId:oid,moDesc:mo,tipo:$("#j_tipo").value,tecnicoId:$("#j_tec").value,horasAsignadas:num($("#j_h").value),horasFacturadas:null,valorRepuestos:0,valorServicioExterno:0,estado:"asignado",segments:[],pauseReason:null,createdAt:Date.now(),finishedAt:null};
+  DB.saveJob(j); closeModal();
+};
+window.openClose=id=>{
+  const j=JOBS.find(x=>x.id===id); const real=jobReal(j).toFixed(2);
+  modal(`<h2 style="margin:0 0 4px">Facturar trabajo</h2><p class="muted" style="margin:0 0 12px;font-size:13px">${j.moDesc}</p>
+    <div class="note" style="margin:0 0 12px">Tiempo real: <b>${real} h</b> · Estándar: <b>${j.horasAsignadas} h</b></div>
+    <div class="field"><label class="f">Horas facturadas (define el pago)</label><input class="t" id="c_h" type="number" step="0.25" value="${j.horasFacturadas!=null?j.horasFacturadas:j.horasAsignadas}"></div>
+    <div class="two"><div class="field"><label class="f">Repuestos $</label><input class="t" id="c_rep" type="number" step="0.01" value="${j.valorRepuestos||0}"></div>
+      <div class="field"><label class="f">Servicio externo $</label><input class="t" id="c_ext" type="number" step="0.01" value="${j.valorServicioExterno||0}"></div></div>
+    <div class="note" id="c_prev" style="margin:0 0 12px"></div>
+    <div class="row"><button class="btn btn-primary" style="flex:1" onclick="saveClose('${id}')">Guardar</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);
+  const upd=()=>{const h=num($("#c_h").value);$("#c_prev").innerHTML=`MO facturada: <b>${money(h*num(SET.rate))}</b> · Bolsa 30% (cubre comisión + IESS patronal y otros): <b>${money(h*num(SET.rate)*num(SET.commission))}</b>`;};
+  $("#c_h").addEventListener("input",upd); upd();
+};
+window.saveClose=id=>{const j=getJob(id);j.horasFacturadas=num($("#c_h").value);j.valorRepuestos=num($("#c_rep").value);j.valorServicioExterno=num($("#c_ext").value);if(j.estado!=="terminado"){const seg=(j.segments||[]).find(s=>!s.e);if(seg)seg.e=Date.now();j.estado="terminado";j.finishedAt=j.finishedAt||Date.now();}DB.saveJob(j);closeModal();};
+window.openSalida=oid=>{const o=ORDERS.find(x=>x.id===oid);modal(`<h2 style="margin:0 0 10px">Marcar salida</h2><div class="field"><label class="f">Fecha y hora de salida</label><input class="t" id="s_out" type="datetime-local" value="${tsToInput(Date.now())}"></div><div class="row"><button class="btn btn-ok" style="flex:1" onclick="saveSalida('${oid}')">Confirmar entrega</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);};
+window.saveSalida=oid=>{const o=getOrder(oid);o.salidaAt=inputToTs($("#s_out").value)||Date.now();DB.saveOrder(o);closeModal();};
+window.askDeleteOrder=oid=>{const o=ORDERS.find(x=>x.id===oid);if(confirm(`¿Eliminar la OT ${o.ot||""} (${o.marca} ${o.modelo}) y todos sus trabajos? No se puede deshacer.`)){jobsOf(oid).forEach(j=>DB.delJob(j.id));DB.delOrder(oid);}};
+
+window.openTeam=()=>{modal(`<h2 style="margin:0 0 10px">Equipo y PIN</h2>
+  <div>${TECHS.map(t=>`<div class="row" style="align-items:center;margin-bottom:8px">
+    <input class="t" style="flex:2" value="${t.nombre}" onchange="editTech('${t.id}','nombre',this.value)">
+    <input class="t" style="flex:.8" value="${t.pin}" onchange="editTech('${t.id}','pin',this.value)">
+    <select class="t" style="flex:.9" onchange="editTech('${t.id}','activo',this.value==='1')"><option value="1" ${t.activo?'selected':''}>Activo</option><option value="0" ${!t.activo?'selected':''}>Inactivo</option></select>
+    <button class="btn btn-danger btn-sm" onclick="if(confirm('¿Eliminar técnico?'))DB.delTech('${t.id}')">✕</button></div>`).join("")}</div>
+  <button class="btn btn-line" style="width:100%;margin-top:6px" onclick="addTech()">+ Agregar técnico</button>
+  <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="closeModal()">Listo</button>`);};
+window.editTech=(id,k,v)=>{const t=TECHS.find(x=>x.id===id);t[k]=v;DB.saveTech({...t});};
+window.addTech=()=>{DB.saveTech({id:uid(),nombre:"Nuevo técnico",pin:"0000",activo:true});setTimeout(openTeam,150);};
+
+window.openSettings=()=>{
+  modal(`<h2 style="margin:0 0 12px">Ajustes del taller</h2>
+    <div class="two">
+      <div class="field"><label class="f">Valor hora/hombre $</label><input class="t" id="set_rate" type="number" step="0.5" value="${SET.rate}"></div>
+      <div class="field"><label class="f">Bolsa técnico % (30%)</label><input class="t" id="set_com" type="number" step="1" value="${(SET.commission*100)}"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label class="f">Meta MO individual / mes $</label><input class="t" id="set_metaind" type="number" step="50" value="${SET.metaIndividual}"></div>
+      <div class="field"><label class="f">Horas disponibles / semana</label><input class="t" id="set_disp" type="number" step="1" value="${SET.horasDisponibles}"></div>
+    </div>
+    <div class="three">
+      <div class="field"><label class="f">Meta facturación / mes $</label><input class="t" id="set_metafac" type="number" step="500" value="${SET.metaFacturacionMensual}"></div>
+      <div class="field"><label class="f">Meta mezcla MO %</label><input class="t" id="set_mix" type="number" step="1" value="${SET.metaMixMO}"></div>
+      <div class="field"><label class="f">Meta Hyundai+Kia %</label><input class="t" id="set_hk" type="number" step="1" value="${SET.metaMarcasExpertas}"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label class="f">PIN coordinador</label><input class="t" id="set_cpin" value="${SET.coordPin}"></div>
+      <div class="field"><label class="f">PIN tablero</label><input class="t" id="set_tpin" value="${SET.tableroPin}"></div>
+    </div>
+    <div class="field"><label class="f">Logo del taller (PNG/JPG)</label><input class="t" type="file" accept="image/*" id="set_logo"></div>
+    ${SET.logo?'<div class="muted" style="font-size:12px;margin-bottom:8px">Logo cargado. Sube otro para reemplazarlo.</div>':''}
+    <div class="row"><button class="btn btn-primary" style="flex:1" onclick="saveSettings()">Guardar ajustes</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);
+};
+window.saveSettings=()=>{
+  const s={...SET,rate:num($("#set_rate").value),commission:num($("#set_com").value)/100,metaIndividual:num($("#set_metaind").value),horasDisponibles:num($("#set_disp").value),metaFacturacionMensual:num($("#set_metafac").value),metaMixMO:num($("#set_mix").value),metaMarcasExpertas:num($("#set_hk").value),coordPin:$("#set_cpin").value.trim()||SET.coordPin,tableroPin:$("#set_tpin").value.trim()||SET.tableroPin};
+  const f=$("#set_logo").files[0];
+  if(f){const r=new FileReader();r.onload=()=>{s.logo=r.result;DB.saveSettings(s);closeModal();};r.readAsDataURL(f);}
+  else{DB.saveSettings(s);closeModal();}
+};
+
+/* ---------- TABLERO ---------- */
+function renderDash(){
+  const ords=ORDERS.filter(orderInPeriod);
+  const ordIds=new Set(ords.map(o=>o.id));
+  const jobs=JOBS.filter(j=>ordIds.has(j.orderId));
+  const fact=jobs.filter(j=>j.horasFacturadas!=null);
+  const MO=fact.reduce((s,j)=>s+billed(j),0), REP=fact.reduce((s,j)=>s+num(j.valorRepuestos),0), EXT=fact.reduce((s,j)=>s+num(j.valorServicioExterno),0);
+  const TOT=MO+REP+EXT;
+  const autos=ords.filter(o=>jobsOf(o.id).length>0).length;
+  const ticket=autos?TOT/autos:0;
+  const mixMO=TOT?MO/TOT*100:0;
+  const delivered=ords.filter(o=>o.salidaAt);
+  const permH=delivered.length?delivered.reduce((s,o)=>s+(o.salidaAt-o.ingresoAt)/3600000,0)/delivered.length:0;
+  // marcas/modelos
+  const marcas={},modelos={}; let hk=0;
+  ords.forEach(o=>{const m=(o.marca||"—").toUpperCase();marcas[m]=(marcas[m]||0)+1;const md=((o.marca||"")+" "+(o.modelo||"")).trim().toUpperCase()||"—";modelos[md]=(modelos[md]||0)+1;if(m==="HYUNDAI"||m==="KIA")hk++;});
+  const pHK=ords.length?hk/ords.length*100:0;
+  const marcasArr=Object.entries(marcas).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const modelosArr=Object.entries(modelos).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const tipos=["Express","Mantenimiento","Especializado"]; const tipoCount=tipos.map(tp=>fact.filter(j=>j.tipo===tp).length);
+  // por técnico
+  const disp=num(SET.horasDisponibles)*weeksInPeriod();
+  const porTec=TECHS.map(t=>{
+    const js=jobs.filter(j=>j.tecnicoId===t.id);
+    const fj=js.filter(j=>j.horasFacturadas!=null);
+    const real=js.reduce((s,j)=>s+jobReal(j),0);
+    const estandar=js.reduce((s,j)=>s+num(j.horasAsignadas),0);
+    const mo=fj.reduce((s,j)=>s+billed(j),0);
+    const mou=disp?real/disp:0, ef=real>0?estandar/real:0, prod=ef*mou;
+    return {nombre:t.nombre,n:js.length,mo,real,estandar,mou,ef,prod};
+  }).filter(x=>x.n>0).sort((a,b)=>b.mo-a.mo);
+  // metas
+  const metaFac=metaFactPeriodo();
+  const facPct=metaFac?Math.min(100,TOT/metaFac*100):0;
+  // donut mix
+  const mixRep=100-mixMO;
+  const donut=`background:conic-gradient(var(--azul-2) 0 ${mixMO}%, var(--oro) ${mixMO}% 100%)`;
+  // trend (por mes del año seleccionado / por año si todo)
+  let trend=[];
+  if(dashPeriod==="todo"){
+    const byYear={}; ORDERS.forEach(o=>{const y=new Date(o.ingresoAt||o.createdAt).getFullYear();byYear[y]=byYear[y]||0;jobsOf(o.id).filter(j=>j.horasFacturadas!=null).forEach(j=>byYear[y]+=jobTotal(j));});
+    trend=Object.keys(byYear).sort().map(y=>({lab:y,val:byYear[y],cur:false}));
+  } else {
+    const meses=["E","F","M","A","M","J","J","A","S","O","N","D"]; const yr=dashPeriod==="anio"?dashYear:new Date().getFullYear();
+    const byM=Array(12).fill(0);
+    ORDERS.filter(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()===yr).forEach(o=>jobsOf(o.id).filter(j=>j.horasFacturadas!=null).forEach(j=>byM[new Date(o.ingresoAt||o.createdAt).getMonth()]+=jobTotal(j)));
+    const cm=new Date().getMonth();
+    trend=byM.map((v,i)=>({lab:meses[i],val:v,cur:yr===new Date().getFullYear()&&i===cm}));
+  }
+  const maxTrend=Math.max(1,...trend.map(t=>t.val));
+  const years=[...new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()))].sort((a,b)=>b-a);
+
+  app.innerHTML=`
+  <div class="sectiontitle">
+    <h2>Tablero</h2>
+    <div class="seg">
+      ${[["semana","Semana"],["mes","Mes"],["anio","Año"],["todo","Todos"]].map(([k,l])=>`<button class="${dashPeriod===k?'on':''}" onclick="dashPeriod='${k}';render()">${l}</button>`).join("")}
+      ${dashPeriod==="anio"&&years.length>1?`<select class="t" style="width:auto;margin-left:6px" onchange="dashYear=+this.value;render()">${years.map(y=>`<option value="${y}" ${y===dashYear?'selected':''}>${y}</option>`).join("")}</select>`:""}
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi gold"><div class="lbl">Facturación total</div><div class="v">${money(TOT)}</div></div>
+    <div class="kpi"><div class="lbl">Mano de obra</div><div class="v">${money(MO)} <small>${mixMO.toFixed(0)}%</small></div></div>
+    <div class="kpi"><div class="lbl">Repuestos</div><div class="v">${money(REP)}</div></div>
+    <div class="kpi"><div class="lbl">Servicio externo</div><div class="v">${money(EXT)}</div></div>
+    <div class="kpi"><div class="lbl">N° de autos</div><div class="v">${autos}</div></div>
+    <div class="kpi"><div class="lbl">Ticket promedio</div><div class="v">${money(ticket)}</div></div>
+    <div class="kpi"><div class="lbl">Estadía promedio</div><div class="v">${(permH/24).toFixed(1)} <small>días</small></div></div>
+    <div class="kpi"><div class="lbl">Horas MO facturadas</div><div class="v">${(MO/num(SET.rate)).toFixed(0)} <small>h</small></div></div>
+  </div>
+
+  <div class="sectiontitle" style="margin-top:18px"><h2 style="font-size:17px">Cumplimiento de metas</h2></div>
+  <div class="goal">
+    <div class="goalcard"><div class="t">Facturación vs meta</div><div class="v">${money(TOT)}</div><div class="bar"><i style="width:${facPct}%;background:${TOT>=metaFac?'var(--ok)':'var(--azul-2)'}"></i></div><div class="meta">Meta ${money(metaFac)} · <b class="check ${TOT>=metaFac?'ok':'no'}">${facPct.toFixed(0)}%</b></div></div>
+    <div class="goalcard"><div class="t">Mezcla mano de obra</div><div class="v">${mixMO.toFixed(0)}%</div><div class="bar"><i style="width:${Math.min(100,mixMO)}%;background:${mixMO>=num(SET.metaMixMO)?'var(--ok)':'var(--warn)'}"></i></div><div class="meta">Meta ${SET.metaMixMO}% · <b class="check ${mixMO>=num(SET.metaMixMO)?'ok':'no'}">${mixMO>=num(SET.metaMixMO)?'cumple':'por debajo'}</b></div></div>
+    <div class="goalcard"><div class="t">Hyundai + Kia (somos expertos)</div><div class="v">${pHK.toFixed(0)}%</div><div class="bar"><i style="width:${Math.min(100,pHK)}%;background:${pHK>=num(SET.metaMarcasExpertas)?'var(--ok)':'var(--danger)'}"></i></div><div class="meta">Meta ${SET.metaMarcasExpertas}% · <b class="check ${pHK>=num(SET.metaMarcasExpertas)?'ok':'no'}">${pHK>=num(SET.metaMarcasExpertas)?'cumple':'no cumple'}</b></div></div>
+  </div>
+
+  <div class="row" style="margin-top:18px">
+    <div class="panel pad" style="flex:1.3;min-width:300px">
+      <span class="eyebrow">Facturación</span><h2 style="margin:2px 0 10px">${dashPeriod==="todo"?"Por año":"Por mes · "+(dashPeriod==="anio"?dashYear:new Date().getFullYear())}</h2>
+      <div class="trend">${trend.map(t=>`<div class="col ${t.cur?'cur':''}"><i style="height:${t.val/maxTrend*120}px" title="${money(t.val)}"></i><span class="lab">${t.lab}</span></div>`).join("")}</div>
+    </div>
+    <div class="panel pad" style="flex:1;min-width:240px">
+      <span class="eyebrow">Mezcla</span><h2 style="margin:2px 0 10px">MO vs Repuestos</h2>
+      <div class="row" style="align-items:center"><div class="donut" style="${donut}"></div>
+        <div class="legend"><div><span class="dot" style="background:var(--azul-2)"></span> Mano de obra ${mixMO.toFixed(0)}%</div><div><span class="dot" style="background:var(--oro)"></span> Repuestos+externo ${mixRep.toFixed(0)}%</div></div></div>
+    </div>
+  </div>
+
+  <div class="panel pad" style="margin-top:18px">
+    <span class="eyebrow">Por técnico</span><h2 style="margin:2px 0 12px">Productividad y facturación</h2>
+    <div style="overflow-x:auto"><table>
+      <tr><th>Técnico</th><th class="n">Autos</th><th class="n">MO fact.</th><th>vs meta</th><th class="n">MOU</th><th class="n">Eficiencia</th><th class="n">Productividad</th></tr>
+      ${porTec.length?porTec.map(t=>{const metaInd=num(SET.metaIndividual)*(dashPeriod==="semana"?1/4.345:dashPeriod==="mes"?1:dashPeriod==="anio"?12:12);const mp=metaInd?Math.min(100,t.mo/metaInd*100):0;const cls=t.mou<0.4?"low":t.mou<0.6?"mid":"";
+        return `<tr><td>${t.nombre}</td><td class="n">${t.n}</td><td class="n">${money(t.mo)}</td>
+          <td class="util ${cls}" style="min-width:90px"><div class="bar"><i style="width:${mp}%"></i></div><small class="muted">${mp.toFixed(0)}%</small></td>
+          <td class="n">${(t.mou*100).toFixed(0)}%</td><td class="n">${t.real>0?(t.ef*100).toFixed(0)+"%":"—"}</td><td class="n"><b style="color:var(--${t.prod>=0.6?'ok':t.prod>=0.4?'warn':'danger'})">${(t.prod*100).toFixed(0)}%</b></td></tr>`;
+      }).join(""):`<tr><td colspan="7" class="muted" style="text-align:center;padding:18px">Sin datos en el periodo.</td></tr>`}
+    </table></div>
+    <div class="note">MOU = horas trabajadas ÷ disponibles (${num(SET.horasDisponibles)} h/sem). Eficiencia = horas estándar ÷ reales. Productividad = Eficiencia × MOU. Objetivo de productividad: 60%+.</div>
+  </div>
+
+  <div class="row" style="margin-top:18px">
+    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Marcas</span><h2 style="margin:2px 0 10px">Top atendidas</h2>
+      ${barsBlock(marcasArr,ords.length)}</div>
+    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Modelos</span><h2 style="margin:2px 0 10px">Top modelos</h2>
+      ${barsBlock(modelosArr,ords.length)}</div>
+    <div class="panel pad" style="flex:1;min-width:240px"><span class="eyebrow">Tipo de servicio</span><h2 style="margin:2px 0 10px">Mezcla</h2>
+      ${tipos.map((tp,i)=>{const tot=tipoCount.reduce((a,b)=>a+b,0)||1;const p=tipoCount[i]/tot*100;return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${tp}</span><b>${tipoCount[i]} · ${p.toFixed(0)}%</b></div><div class="bar"><i style="width:${p}%;background:var(--${tp==='Especializado'?'ok':tp==='Mantenimiento'?'oro':'azul-2'})"></i></div></div>`;}).join("")}</div>
+  </div>
+
+  <div class="panel pad" style="margin-top:18px">
+    <div class="sectiontitle"><h2 style="font-size:17px">Respaldo / Exportar</h2><button class="btn btn-gold" onclick="exportXLSX()">⬇ Descargar Excel (.xlsx)</button></div>
+    <p class="muted" style="margin:0;font-size:13px">Descarga todo el historial (órdenes, trabajos y resumen por técnico) en una hoja de cálculo, para respaldo o análisis externo. Se une a tu base por número de OT.</p>
+  </div>`;
+}
+function barsBlock(arr,tot){tot=tot||1;return arr.length?arr.map(([k,c])=>{const p=c/tot*100;return `<div style="margin-bottom:9px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${k}</span><b>${c} · ${p.toFixed(0)}%</b></div><div class="bar"><i style="width:${p}%"></i></div></div>`;}).join(""):'<p class="muted">Sin datos.</p>';}
+
+/* ---------- EXPORT XLSX ---------- */
+window.exportXLSX=async()=>{
+  let XLSX;
+  try{ XLSX=await import("https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs"); }
+  catch(e){ exportCSV(); return; }
+  const trabajos=JOBS.map(j=>{const o=ORDERS.find(x=>x.id===j.orderId)||{};const t=TECHS.find(x=>x.id===j.tecnicoId)||{};
+    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Anio:o.anio,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"",
+      Tecnico:t.nombre||"",ManoDeObra:j.moDesc,Tipo:j.tipo,HorasEstandar:j.horasAsignadas,HorasReales:+jobReal(j).toFixed(2),HorasFacturadas:j.horasFacturadas??"",ValorMO:+billed(j).toFixed(2),Repuestos:num(j.valorRepuestos),ServicioExterno:num(j.valorServicioExterno),Total:+jobTotal(j).toFixed(2),Estado:labelEstado(j.estado)};});
+  const ordenes=ORDERS.map(o=>{const js=jobsOf(o.id);const tot=js.reduce((s,j)=>s+jobTotal(j),0);const perm=o.salidaAt?((o.salidaAt-o.ingresoAt)/86400000):"";
+    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"En taller",PermanenciaDias:perm===""?"":+perm.toFixed(2),Trabajos:js.length,TotalOT:+tot.toFixed(2)};});
+  const disp=num(SET.horasDisponibles)*52;
+  const resumen=TECHS.map(t=>{const js=JOBS.filter(j=>j.tecnicoId===t.id);const real=js.reduce((s,j)=>s+jobReal(j),0);const est=js.reduce((s,j)=>s+num(j.horasAsignadas),0);const mo=js.filter(j=>j.horasFacturadas!=null).reduce((s,j)=>s+billed(j),0);
+    return {Tecnico:t.nombre,Trabajos:js.length,MO_Facturada:+mo.toFixed(2),HorasReales:+real.toFixed(2),HorasEstandar:+est.toFixed(2),MOU_pct:+(disp?real/disp*100:0).toFixed(1),Eficiencia_pct:+(real>0?est/real*100:0).toFixed(1),Productividad_pct:+(disp&&real>0?(est/real)*(real/disp)*100:0).toFixed(1)};});
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(trabajos),"Trabajos");
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(ordenes),"Ordenes");
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(resumen),"Resumen Tecnico");
+  XLSX.writeFile(wb,"productividad_byp_"+new Date().toISOString().slice(0,10)+".xlsx");
+};
+function exportCSV(){
+  const head=["OT","Placa","Marca","Modelo","Cliente","Tecnico","ManoDeObra","Tipo","HEstandar","HReales","HFacturadas","ValorMO","Repuestos","ServExterno","Total","Estado"];
+  const rows=JOBS.map(j=>{const o=ORDERS.find(x=>x.id===j.orderId)||{};const t=TECHS.find(x=>x.id===j.tecnicoId)||{};
+    return [o.ot,o.placa,o.marca,o.modelo,o.cliente,t.nombre||"",j.moDesc,j.tipo,j.horasAsignadas,jobReal(j).toFixed(2),j.horasFacturadas??"",billed(j).toFixed(2),num(j.valorRepuestos),num(j.valorServicioExterno),jobTotal(j).toFixed(2),labelEstado(j.estado)].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",");});
+  const csv="\uFEFF"+[head.join(","),...rows].join("\n");const b=new Blob([csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="productividad_byp.csv";a.click();
+}
+
+/* ===================== TICK ===================== */
+function tick(){
+  if(!session)return;
+  document.querySelectorAll(".clk").forEach(el=>{const j=JOBS.find(x=>x.id===el.dataset.id);if(j)el.textContent=fmtClock(jobSecs(j));});
+  if(session.role==="tech"){const tech=TECHS.find(t=>t.id===session.techId);if(!tech)return;const a=JOBS.find(j=>j.tecnicoId===tech.id&&j.estado==="en_curso");const lc=$("#liveClock");if(lc)lc.textContent=a?fmtClock(jobSecs(a)):"—";}
+}
+
+/* ===================== PIN / MODALES ===================== */
+let pinBuf="",pinGoal=null,pinCtx=null;
+function buildPinPad(){const pad=$("#pinPad");["1","2","3","4","5","6","7","8","9","←","0","✓"].forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>{if(k==="←")pinBuf=pinBuf.slice(0,-1);else if(k==="✓")submitPin();else if(pinBuf.length<4)pinBuf+=k;renderDots();};pad.appendChild(b);});}
+function renderDots(){$("#pinDots").textContent=pinBuf.padEnd(4,"·").split("").map((c,i)=>i<pinBuf.length?"●":"·").join("");}
+window.askPin=role=>{pinCtx={type:role};pinGoal=role==="coord"?SET.coordPin:SET.tableroPin;$("#pinTitle").textContent=role==="coord"?"PIN coordinador":"PIN tablero";$("#pinSub").textContent="";openPin();};
+window.pickTech=()=>{const opts=TECHS.filter(t=>t.activo);modal(`<h2 style="margin:0 0 10px">¿Quién eres?</h2>${opts.map(t=>`<button class="btn btn-line" style="width:100%;margin-bottom:8px;text-align:left" onclick="techPin('${t.id}')">${t.nombre}</button>`).join("")}<button class="btn btn-line" style="width:100%" onclick="closeModal()">Cancelar</button>`);};
+window.techPin=id=>{closeModal();const t=TECHS.find(x=>x.id===id);pinCtx={type:"tech",techId:id};pinGoal=t.pin;$("#pinTitle").textContent="PIN de "+t.nombre.split(" ")[0];$("#pinSub").textContent="Ingresa tu PIN";openPin();};
+function openPin(){pinBuf="";renderDots();$("#pinModal").classList.add("show");}
+window.closePin=()=>$("#pinModal").classList.remove("show");
+function submitPin(){if(pinBuf!==pinGoal){$("#pinDots").textContent="✕ incorrecto";pinBuf="";return;}closePin();if(pinCtx.type==="coord")session={role:"coord"};else if(pinCtx.type==="dash")session={role:"dash"};else session={role:"tech",techId:pinCtx.techId};render();}
+function modal(html){let g=document.getElementById("genModal");if(!g){g=document.createElement("div");g.className="modal-bg";g.id="genModal";g.innerHTML='<div class="modal" id="genInner"></div>';document.body.appendChild(g);}document.getElementById("genInner").innerHTML=html;g.classList.add("show");}
+window.closeModal=()=>{const g=document.getElementById("genModal");if(g)g.classList.remove("show");};
+function emptyState(ic,t,s){return `<div class="empty panel"><div class="ic">${ic}</div><h3 style="margin:8px 0 2px">${t}</h3><p class="muted" style="margin:0">${s}</p></div>`;}
+</script>
+</body>
+</html>
