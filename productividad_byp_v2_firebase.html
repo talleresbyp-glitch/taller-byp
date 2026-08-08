@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Productividad · Taller Ballesteros y Pazmiño</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&family=Saira+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -20,7 +19,6 @@
   h1,h2,h3,.display{font-family:"Saira",system-ui,sans-serif;letter-spacing:.2px}
   .num{font-family:"Saira Condensed","Saira",sans-serif;font-weight:700;font-variant-numeric:tabular-nums}
   button{font-family:inherit;cursor:pointer} input,select{font-family:inherit;font-size:15px}
-
   .topbar{background:var(--azul);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30;box-shadow:0 2px 12px rgba(14,42,102,.25)}
   .logo{width:42px;height:42px;border-radius:9px;flex:0 0 auto;background:linear-gradient(135deg,var(--oro),#caa015);color:var(--azul);font-family:"Saira";font-weight:700;font-size:18px;display:grid;place-items:center;letter-spacing:-1px;border:1.5px solid rgba(255,255,255,.25);overflow:hidden}
   .logo img{width:100%;height:100%;object-fit:contain;background:#fff}
@@ -32,34 +30,29 @@
   .pill.live{background:rgba(22,163,74,.22);border-color:rgba(22,163,74,.5)}
   .pill.local{background:rgba(230,178,41,.18);border-color:rgba(230,178,41,.5);color:#FFE6A6}
   .topbar button.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:9px;padding:7px 11px;font-size:13px}
-
-  .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 80px}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 16px 80px}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
   .pad{padding:18px}
   .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--oro-dark);font-weight:600;font-family:"Saira"}
   .muted{color:var(--muted)} .row{display:flex;gap:12px;flex-wrap:wrap}
-
   .gate{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
   .role{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;box-shadow:var(--shadow);transition:.15s;border-top:3px solid var(--azul)}
   .role:hover{transform:translateY(-2px);border-top-color:var(--oro)}
   .role .ic{font-size:30px} .role h3{margin:8px 0 4px} .role p{margin:0;font-size:13px;color:var(--muted)}
   .role button{margin-top:14px;width:100%;background:var(--azul);color:#fff;border:none;border-radius:10px;padding:11px;font-weight:600}
   .hero h1{font-size:26px;margin:0 0 4px} .hero p{margin:0;color:var(--muted);max-width:64ch}
-
   .btn{border:none;border-radius:10px;padding:11px 16px;font-weight:600;font-size:15px}
   .btn-primary{background:var(--azul);color:#fff} .btn-gold{background:var(--oro);color:var(--azul)}
   .btn-line{background:#fff;border:1px solid var(--line);color:var(--ink)}
   .btn-ok{background:var(--ok);color:#fff} .btn-warn{background:var(--warn);color:#fff}
   .btn-danger{background:#fff;border:1px solid var(--danger);color:var(--danger)}
   .btn:disabled{opacity:.45;cursor:not-allowed} .btn-sm{padding:8px 11px;font-size:13px}
-
   label.f{display:block;font-size:12px;color:var(--muted);margin:0 0 4px;font-weight:500}
   .field{margin-bottom:12px}
   input.t,select.t{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
   input.t:focus,select.t:focus{outline:none;border-color:var(--azul-2);box-shadow:0 0 0 3px rgba(29,78,216,.12)}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-
   .order{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-bottom:12px;border-left:4px solid var(--azul)}
   .order.paralizado{border-left-color:var(--danger);background:#FFF7F7}
   .order .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
@@ -70,7 +63,6 @@
   .subjob.pausado{border-color:var(--warn);background:#FFFBF2}
   .subjob.terminado{border-color:var(--done)}
   .subjob .r{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-
   .job{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-bottom:12px;border-left:4px solid var(--slate)}
   .job.en_curso{border-left-color:var(--ok)} .job.pausado{border-left-color:var(--warn)} .job.terminado{border-left-color:var(--done)}
   .job .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
@@ -83,50 +75,43 @@
   .timeline .b{background:#F3F6FC;border:1px solid var(--line);border-radius:8px;padding:6px 9px}
   .timeline .b b{display:block;font-family:"Saira Condensed";font-size:18px;color:var(--azul)}
   .controls{display:flex;gap:8px;flex-wrap:wrap}
-
   .earn{background:linear-gradient(135deg,var(--azul),#15347e);color:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
   .earn .lbl{font-size:12px;color:#AFC0E8;text-transform:uppercase;letter-spacing:1px}
   .earn .big{font-family:"Saira Condensed";font-size:44px;line-height:1;color:var(--oro);margin:4px 0}
   .earn .sub{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap}
   .earn .sub div{font-size:13px;color:#CBD8F5} .earn .sub b{display:block;font-family:"Saira Condensed";font-size:22px;color:#fff}
-
   .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;position:relative}
   .kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-  .kpi .v{font-family:"Saira Condensed";font-size:28px;color:var(--azul);margin-top:2px}
+  .kpi .v{font-family:"Saira Condensed";font-size:27px;color:var(--azul);margin-top:2px}
   .kpi .v small{font-size:13px;color:var(--muted)} .kpi.gold{border-top:3px solid var(--oro)}
-
+  .kpi .delta{font-size:11px;font-weight:600;margin-top:3px}
+  .delta.up{color:var(--ok)} .delta.down{color:var(--danger)}
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line)}
   th{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
   td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   .bar{height:8px;border-radius:5px;background:#EEF2F9;overflow:hidden} .bar > i{display:block;height:100%;background:var(--azul-2)}
   .util .bar>i{background:var(--ok)} .util.low .bar>i{background:var(--danger)} .util.mid .bar>i{background:var(--warn)}
-
   .seg{display:inline-flex;background:#EEF2F9;border-radius:9px;padding:3px;gap:3px;flex-wrap:wrap}
   .seg button{border:none;background:transparent;padding:7px 12px;border-radius:7px;font-size:13px;font-weight:600;color:var(--muted)}
   .seg button.on{background:#fff;color:var(--azul);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-
   .goal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .goalcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
   .goalcard .t{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   .goalcard .v{font-family:"Saira Condensed";font-size:24px;margin:4px 0 6px}
   .goalcard .meta{font-size:12px;color:var(--muted)}
   .check{font-weight:700} .check.ok{color:var(--ok)} .check.no{color:var(--danger)}
-
-  .donut{width:120px;height:120px;border-radius:50%;flex:0 0 auto}
-  .legend{font-size:13px} .legend div{display:flex;align-items:center;gap:6px;margin:3px 0}
-  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
-  .trend{display:flex;gap:6px;align-items:flex-end;height:140px;padding-top:6px}
-  .trend .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
-  .trend .col > i{width:70%;background:var(--azul-2);border-radius:5px 5px 0 0;min-height:2px}
-  .trend .col.cur > i{background:var(--oro)}
-  .trend .lab{font-size:10px;color:var(--muted)}
-
+  .chartbox{position:relative;height:240px}
+  .chartbox.sm{height:210px}
+  .stategrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+  .statecard{border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+  .statecard .n{font-family:"Saira Condensed";font-size:24px}
+  .statecard .l{font-size:11px;color:var(--muted)}
   .empty{text-align:center;padding:30px;color:var(--muted)} .empty .ic{font-size:34px;opacity:.5}
   .modal-bg{position:fixed;inset:0;background:rgba(14,42,102,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
   .modal-bg.show{display:flex}
-  .modal{background:#fff;border-radius:14px;max-width:460px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:88vh;overflow:auto}
+  .modal{background:#fff;border-radius:14px;max-width:520px;width:100%;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:88vh;overflow:auto}
   .pinpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
   .pinpad button{padding:16px;font-size:20px;font-family:"Saira Condensed";border:1px solid var(--line);background:#fff;border-radius:10px}
   .pindots{font-family:"Saira Condensed";font-size:24px;text-align:center;height:32px;color:var(--azul)}
@@ -134,7 +119,8 @@
   .sectiontitle{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;gap:10px;flex-wrap:wrap}
   .sectiontitle h2{font-size:19px;margin:0}
   .reasons button{width:100%;text-align:left;margin-bottom:8px}
-  @media(max-width:780px){.gate{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.goal{grid-template-columns:1fr}.three{grid-template-columns:1fr}}
+  .causechip{display:inline-flex;gap:6px;align-items:center;font-size:12px;background:#F3F6FC;border:1px solid var(--line);border-radius:8px;padding:4px 8px;margin:2px}
+  @media(max-width:820px){.gate{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.goal{grid-template-columns:1fr}.three{grid-template-columns:1fr}.stategrid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -146,7 +132,6 @@
     <button class="ghost" id="logoutBtn" style="display:none">Salir</button>
   </div>
   <div class="wrap" id="app"></div>
-
   <div class="modal-bg" id="pinModal"><div class="modal">
     <h2 id="pinTitle" style="margin:0 0 2px">Ingresar PIN</h2>
     <p class="muted" id="pinSub" style="margin:0 0 8px;font-size:13px"></p>
@@ -154,10 +139,29 @@
     <div class="pinpad" id="pinPad"></div>
     <button class="btn btn-line" style="width:100%;margin-top:10px" onclick="closePin()">Cancelar</button>
   </div></div>
-
 <script type="module">
-/* ===================== CONFIGURACIÓN ===================== */
-// Estos valores son los predeterminados; casi todo es editable desde Ajustes.
+/* ===================== CANDADO DE DOMINIO ===================== */
+/* Esta herramienta solo funciona si se abre desde una de estas direcciones.
+   Si Marco la mueve de sitio (nuevo hosting, dominio propio, etc.), agrega
+   aquí el nuevo dominio o el candado la bloqueará también para el taller. */
+const DOMINIOS_PERMITIDOS = ["talleresbyp-glitch.github.io"];
+const BLOQUEADO = !DOMINIOS_PERMITIDOS.includes(location.hostname);
+if(BLOQUEADO){
+  document.body.innerHTML = `
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;
+      background:#0E2A66;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      text-align:center;padding:32px">
+      <div style="max-width:420px">
+        <div style="font-size:42px;margin-bottom:14px">🔒</div>
+        <h1 style="font-size:19px;margin:0 0 10px;font-weight:700">Herramienta de uso exclusivo</h1>
+        <p style="font-size:14.5px;line-height:1.6;color:#C9D5EE;margin:0">
+          Esta aplicación funciona únicamente desde la dirección oficial de
+          Taller Ballesteros y Pazmiño. Si crees que esto es un error,
+          contacta a Marco Ballesteros.
+        </p>
+      </div>
+    </div>`;
+}
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyA_iLgpC3P8lug-ZTVgfOv26Ev8dNvLEwk",
   authDomain: "control-taller-byp.firebaseapp.com",
@@ -167,30 +171,216 @@ const FIREBASE_CONFIG = {
   appId: "1:318853255661:web:6653c03fc1833feca657e4",
   measurementId: "G-PMFX2ENE3X"
 };
+
+/* ===================== CERROJO DE DISPOSITIVO =====================
+   Pide un código la primera vez que la app se abre en un equipo nuevo.
+   El código NO está escrito en este archivo: solo vive su huella (SHA-256
+   con sal), de la que no se puede volver atrás para recuperarlo.
+   Para cambiarlo hay que regenerar la huella. */
+const CERROJO = {
+  hash: '62f87d3128894b3f2ee09d6f7a52b3c2173d534696b2ab038f07ccedae5d0493',
+  sal:  'prod-byp-2026-v3',
+  gen:  1,              /* súbelo a 2, 3… para obligar a reactivar TODOS los equipos */
+  dias: 0,       /* días que dura una activación; 0 = para siempre */
+  clave:'bypf_disp',
+  marca:'#0E2A66'
+};
+
+function sha256(msg){
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+  0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+  0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+  0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+  0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+  0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+  0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+  0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  const b=[]; for(let i=0;i<msg.length;i++){ let c=msg.codePointAt(i);
+    if(c>0xFFFF) i++;
+    if(c<128) b.push(c);
+    else if(c<2048){ b.push(192|c>>6,128|c&63); }
+    else if(c<65536){ b.push(224|c>>12,128|(c>>6)&63,128|c&63); }
+    else { b.push(240|c>>18,128|(c>>12)&63,128|(c>>6)&63,128|c&63); } }
+  const bits=b.length*8; b.push(0x80); while(b.length%64!==56) b.push(0);
+  for(let i=7;i>=0;i--) b.push(Math.floor(bits/Math.pow(2,i*8))&255);
+  const rr=(x,n)=>(x>>>n)|(x<<(32-n));
+  for(let i=0;i<b.length;i+=64){
+    const w=new Array(64);
+    for(let t=0;t<16;t++) w[t]=(b[i+t*4]<<24)|(b[i+t*4+1]<<16)|(b[i+t*4+2]<<8)|b[i+t*4+3];
+    for(let t=16;t<64;t++){
+      const s0=rr(w[t-15],7)^rr(w[t-15],18)^(w[t-15]>>>3);
+      const s1=rr(w[t-2],17)^rr(w[t-2],19)^(w[t-2]>>>10);
+      w[t]=(w[t-16]+s0+w[t-7]+s1)|0; }
+    let [a,bb,c,d,e,f,g,h]=H;
+    for(let t=0;t<64;t++){
+      const S1=rr(e,6)^rr(e,11)^rr(e,25), ch=(e&f)^(~e&g);
+      const t1=(h+S1+ch+K[t]+w[t])|0;
+      const S0=rr(a,2)^rr(a,13)^rr(a,22), mj=(a&bb)^(a&c)^(bb&c);
+      const t2=(S0+mj)|0;
+      h=g; g=f; f=e; e=(d+t1)|0; d=c; c=bb; bb=a; a=(t1+t2)|0; }
+    H=[(H[0]+a)|0,(H[1]+bb)|0,(H[2]+c)|0,(H[3]+d)|0,(H[4]+e)|0,(H[5]+f)|0,(H[6]+g)|0,(H[7]+h)|0];
+  }
+  return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('');
+}
+const codigoOK = c => sha256(String(c||'').trim().toUpperCase()+CERROJO.sal) === CERROJO.hash;
+
+/* --- identidad local del equipo --- */
+function LS(k,v){
+  try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); return v; }
+  catch(e){ return null; }
+}
+function dispLeer(){ try{ return JSON.parse(LS(CERROJO.clave)||'null'); }catch(e){ return null; } }
+function dispGuardar(d){ LS(CERROJO.clave, JSON.stringify(d)); }
+function dispNuevoId(){
+  try{ if(crypto&&crypto.randomUUID) return crypto.randomUUID(); }catch(e){}
+  return 'd-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);
+}
+function equipoProbable(){
+  const u=navigator.userAgent, s=navigator.platform||'';
+  const so = /Android/i.test(u)?'Android' : /iPhone|iPad|iPod/i.test(u)?'iPhone o iPad'
+           : /Windows/i.test(u)?'Windows' : /Mac/i.test(u)?'Mac' : /Linux/i.test(u)?'Linux' : (s||'Equipo');
+  const nav= /Edg\//.test(u)?'Edge' : /OPR\//.test(u)?'Opera' : /Chrome\//.test(u)?'Chrome'
+           : /Firefox\//.test(u)?'Firefox' : /Safari\//.test(u)?'Safari' : 'Navegador';
+  return so+' · '+nav;
+}
+function diasRestantes(d){
+  if(!CERROJO.dias) return Infinity;
+  return CERROJO.dias - Math.floor((Date.now()-d.desde)/86400000);
+}
+function dispVigente(){
+  const d=dispLeer();
+  if(!d || !d.id || d.gen!==CERROJO.gen) return null;
+  if(diasRestantes(d)<=0) return null;
+  return d;
+}
+
+/* --- pantalla de activación --- */
+function pantallaActivacion(alVerificar){
+  const capa=document.createElement('div');
+  capa.id='cerrojoCapa';
+  capa.innerHTML=`<style>
+    #cerrojoCapa{position:fixed;inset:0;z-index:99999;background:${CERROJO.marca};color:#fff;
+      display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto;
+      font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+    #cerrojoCapa .cj{max-width:420px;width:100%}
+    #cerrojoCapa .ic{font-size:40px;margin-bottom:14px}
+    #cerrojoCapa h1{font-size:20px;margin:0 0 8px;font-weight:700;letter-spacing:-.2px}
+    #cerrojoCapa p{margin:0 0 18px;font-size:13.5px;line-height:1.55;opacity:.82}
+    #cerrojoCapa label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.7px;
+      opacity:.7;margin:0 0 6px}
+    #cerrojoCapa input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;
+      font-size:15px;margin-bottom:15px;font-family:inherit}
+    #cerrojoCapa input:focus{outline:none;border-color:#F4B400;background:rgba(255,255,255,.13)}
+    #cerrojoCapa input::placeholder{color:rgba(255,255,255,.4)}
+    #cerrojoCapa #cjCod{letter-spacing:2px;text-transform:uppercase;font-weight:600}
+    #cerrojoCapa button{width:100%;padding:13px;border-radius:10px;border:none;background:#F4B400;
+      color:#1A1A1A;font-weight:700;font-size:14.5px;cursor:pointer;font-family:inherit}
+    #cerrojoCapa button:disabled{opacity:.5;cursor:not-allowed}
+    #cerrojoCapa .err{background:rgba(255,90,90,.16);border:1px solid rgba(255,120,120,.4);
+      padding:11px 13px;border-radius:9px;font-size:13px;margin-bottom:15px;display:none}
+    #cerrojoCapa .pie{margin-top:20px;font-size:11.5px;opacity:.55;line-height:1.6}
+  </style>
+  <div class="cj">
+    <div class="ic">🔐</div>
+    <h1>Activa este equipo</h1>
+    <p>Esta herramienta es de uso interno del taller. Para usarla en este equipo necesitas
+       el código de activación que entrega el Ing. Marco Ballesteros. Se pide una sola vez.</p>
+    <div class="err" id="cjErr"></div>
+    <label for="cjNom">¿Qué equipo es este?</label>
+    <input id="cjNom" placeholder="Ej: Computadora de recepción" maxlength="40" value="">
+    <label for="cjCod">Código de activación</label>
+    <input id="cjCod" placeholder="XXXXXX-0000-XX" autocomplete="off" spellcheck="false">
+    <button id="cjBtn">Activar este equipo</button>
+    <div class="pie">Si no tienes el código, pídeselo al Ing. Marco Ballesteros.
+      Sin activación, esta herramienta no muestra ninguna información del taller.</div>
+  </div>`;
+  document.body.appendChild(capa);
+
+  const $n=capa.querySelector('#cjNom'), $c=capa.querySelector('#cjCod');
+  const $b=capa.querySelector('#cjBtn'), $e=capa.querySelector('#cjErr');
+  $n.value=equipoProbable();
+  setTimeout(()=>$c.focus(),120);
+
+  let fallos=+(LS(CERROJO.clave+'_f')||0), castigo=+(LS(CERROJO.clave+'_t')||0);
+  const err=t=>{ $e.textContent=t; $e.style.display='block'; };
+  function espera(){
+    const falta=Math.ceil((castigo-Date.now())/1000);
+    if(falta>0){
+      $b.disabled=true;
+      $b.textContent=`Espera ${falta} s`;
+      setTimeout(espera,1000);
+    } else { $b.disabled=false; $b.textContent='Activar este equipo'; }
+  }
+  if(castigo>Date.now()){ err('Demasiados intentos fallidos.'); espera(); }
+
+  async function intentar(){
+    if($b.disabled) return;
+    const cod=$c.value.trim();
+    if(!cod){ err('Escribe el código de activación.'); return; }
+    if(!codigoOK(cod)){
+      fallos++; LS(CERROJO.clave+'_f',fallos);
+      if(fallos>=4){ castigo=Date.now()+30000*Math.pow(2,Math.min(fallos-4,4));
+        LS(CERROJO.clave+'_t',castigo); err('Código incorrecto. Demasiados intentos.'); espera(); }
+      else err(`Código incorrecto. Te quedan ${4-fallos} intentos antes de la pausa.`);
+      $c.value=''; $c.focus(); return;
+    }
+    $b.disabled=true; $b.textContent='Activando…';
+    LS(CERROJO.clave+'_f','0'); LS(CERROJO.clave+'_t','0');
+    const d={ id:dispNuevoId(), nombre:($n.value.trim()||equipoProbable()).slice(0,40),
+              equipo:equipoProbable(), gen:CERROJO.gen, desde:Date.now(), visto:Date.now() };
+    try{
+      const res = alVerificar ? await alVerificar(d) : {ok:true};
+      if(res && res.ok===false){
+        $b.disabled=false; $b.textContent='Activar este equipo';
+        err(res.motivo||'No se pudo activar este equipo.'); return;
+      }
+    }catch(e){
+      $b.disabled=false; $b.textContent='Activar este equipo';
+      err('No se pudo confirmar la activación. Revisa tu conexión.'); return;
+    }
+    dispGuardar(d);
+    capa.remove();
+    location.reload();
+  }
+  $b.onclick=intentar;
+  $c.addEventListener('keydown',e=>{ if(e.key==='Enter') intentar(); });
+  $n.addEventListener('keydown',e=>{ if(e.key==='Enter') $c.focus(); });
+}
+
+/* --- pantalla de acceso retirado --- */
+function pantallaRevocado(msg){
+  document.body.innerHTML=`<div style="position:fixed;inset:0;background:${CERROJO.marca};color:#fff;
+    display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;
+    font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">
+    <div style="max-width:400px">
+      <div style="font-size:40px;margin-bottom:14px">🔒</div>
+      <h1 style="font-size:19px;margin:0 0 10px;font-weight:700">Acceso retirado</h1>
+      <p style="font-size:13.5px;line-height:1.6;opacity:.82;margin:0">${msg}</p>
+    </div></div>`;
+}
+
 const DEFAULTS = {
-  rate:25, commission:0.30,
-  metaIndividual:3000,        // meta de MO facturada por técnico / MES
-  horasDisponibles:40,        // horas disponibles por técnico / SEMANA
-  metaFacturacionMensual:24000,
-  metaMixMO:45,               // % objetivo de mano de obra sobre el total
-  metaMarcasExpertas:75,      // % objetivo Hyundai + Kia
-  coordPin:"2468", tableroPin:"1357",
-  logo:null
+  rate:25, commission:0.30, metaIndividual:3000, horasDisponibles:40,
+  metaFacturacionMensual:24000, metaMixMO:45, metaMarcasExpertas:75,
+  coordPin:"2468", tableroPin:"1357", logo:null
 };
 const TECNICOS_INICIALES = [
   {id:"t1",nombre:"Mateo Untuña",pin:"1111",activo:true},
-  {id:"t2",nombre:"David Caiza",pin:"2222",activo:true},
   {id:"t3",nombre:"Cristian Safla",pin:"3333",activo:true},
-  {id:"t4",nombre:"Sebastián Valdivieso",pin:"4444",activo:true},
 ];
-const PAUSAS = ["Almuerzo","Falta de repuesto","Falta de autorización","Servicio externo (rectificadora)","Otro"];
+let DEVICE=null, DEVICES=[], dashOpen=false;
+const PAUSAS = ["Almuerzo","Falta de repuesto","Falta de autorización","Servicio externo (rectificadora)","Trabajos en otro vehículo","Otro"];
+const MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+const HIST = {"monthly": [{"y": 2024, "m": 0, "autos": 85, "mo": 2900.51, "rep": 1686.46, "tot": 4586.97, "permDias": 0.82}, {"y": 2024, "m": 1, "autos": 58, "mo": 2679.75, "rep": 1779.15, "tot": 4458.9, "permDias": 1.67}, {"y": 2024, "m": 2, "autos": 56, "mo": 3769.86, "rep": 3976.55, "tot": 7746.41, "permDias": 1.34}, {"y": 2024, "m": 3, "autos": 78, "mo": 4609.2, "rep": 3804.25, "tot": 8413.45, "permDias": 0.58}, {"y": 2024, "m": 4, "autos": 69, "mo": 5021.57, "rep": 4620.86, "tot": 9642.43, "permDias": 1.64}, {"y": 2024, "m": 5, "autos": 73, "mo": 4030.12, "rep": 3589.75, "tot": 7619.87, "permDias": 1.31}, {"y": 2024, "m": 6, "autos": 60, "mo": 3868.25, "rep": 3782.63, "tot": 7650.88, "permDias": 1.66}, {"y": 2024, "m": 7, "autos": 68, "mo": 5715.5, "rep": 7719.89, "tot": 13435.39, "permDias": 1.17}, {"y": 2024, "m": 8, "autos": 68, "mo": 5352.5, "rep": 6085.75, "tot": 11438.25, "permDias": 2.04}, {"y": 2024, "m": 9, "autos": 62, "mo": 4891.5, "rep": 4901.93, "tot": 9793.43, "permDias": 1.05}, {"y": 2024, "m": 10, "autos": 64, "mo": 5921.85, "rep": 8832.61, "tot": 14754.46, "permDias": 1.59}, {"y": 2024, "m": 11, "autos": 81, "mo": 6379.5, "rep": 5856.87, "tot": 12136.37, "permDias": 0.92}, {"y": 2025, "m": 0, "autos": 72, "mo": 6336.02, "rep": 4085.45, "tot": 10421.47, "permDias": 1.68}, {"y": 2025, "m": 1, "autos": 69, "mo": 5893.0, "rep": 7603.93, "tot": 13496.93, "permDias": 2.08}, {"y": 2025, "m": 2, "autos": 53, "mo": 5439.34, "rep": 5492.71, "tot": 10932.05, "permDias": 1.14}, {"y": 2025, "m": 3, "autos": 66, "mo": 5342.0, "rep": 4593.29, "tot": 9935.29, "permDias": 0.95}, {"y": 2025, "m": 4, "autos": 62, "mo": 5693.75, "rep": 7792.34, "tot": 13486.09, "permDias": 1.46}, {"y": 2025, "m": 5, "autos": 83, "mo": 7558.95, "rep": 6332.63, "tot": 13891.58, "permDias": 1.01}, {"y": 2025, "m": 6, "autos": 59, "mo": 6171.58, "rep": 3291.36, "tot": 9462.94, "permDias": 1.13}, {"y": 2025, "m": 7, "autos": 82, "mo": 8076.0, "rep": 7063.17, "tot": 15139.17, "permDias": 1.04}, {"y": 2025, "m": 8, "autos": 61, "mo": 5145.93, "rep": 7463.08, "tot": 12609.01, "permDias": 1.13}, {"y": 2025, "m": 9, "autos": 81, "mo": 6187.16, "rep": 7212.07, "tot": 13399.23, "permDias": 1.98}, {"y": 2025, "m": 10, "autos": 83, "mo": 6501.3, "rep": 8478.6, "tot": 14979.9, "permDias": 1.35}, {"y": 2025, "m": 11, "autos": 91, "mo": 7090.6, "rep": 11819.85, "tot": 18910.45, "permDias": 1.73}, {"y": 2026, "m": 0, "autos": 69, "mo": 5790.89, "rep": 9921.47, "tot": 15712.36, "permDias": 1.33}, {"y": 2026, "m": 1, "autos": 77, "mo": 5821.71, "rep": 9763.52, "tot": 15585.23, "permDias": 1.33}, {"y": 2026, "m": 2, "autos": 101, "mo": 7803.74, "rep": 11079.2, "tot": 18882.94, "permDias": 1.83}, {"y": 2026, "m": 3, "autos": 103, "mo": 6537.76, "rep": 10209.08, "tot": 16746.84, "permDias": 1.75}], "marcasByYear": {"2024": {"HYUNDAI": 289, "CHEVROLET": 145, "NISSAN": 67, "KIA": 67, "RENAULT": 31, "MAZDA": 28, "GREAT WALL": 18, "VW": 18, "FORD": 16, "TOYOTA": 14, "ZOTYE": 10, "CHERY": 8, "VOLKSWAGEN": 7, "JAC": 6, "SUSUKI": 4, "CITROEN": 4, "SHINERAY": 4, "PEUGEOT": 3, "SKODA": 3, "SUZUKI": 3, "GLORY": 3, "FIAT": 2, "DFSK": 2, "SOUEAST": 2, "DAEWOO": 2, "SOVEAST": 2, "HYUNDAY": 2, "CHANGAN": 1, "HONDA": 1, "JETOUR": 1, "MITSUBISHI": 1, "MERCEDEZ": 1, "AVEO": 1, "CHEVY": 1, "LADA": 1, "SHYMERAI": 1, "TIGGO": 1, "SPORTAGE": 1, "VOLVO": 1, "ZXAUTO": 1, "JEEP": 1, "LEXUS": 1, "FAO": 1, "LIFAN": 1, "VCHEVROLET": 1, "GRAND VITARA": 1, "MAXDA": 1}, "2025": {"HYUNDAI": 405, "KIA": 126, "CHEVROLET": 112, "RENAULT": 44, "MAZDA": 29, "NISSAN": 26, "GREAT WALL": 19, "FORD": 17, "TOYOTA": 17, "CHERY": 12, "VW": 12, "JAC": 5, "MITSUBISHI": 4, "PEUGEOT": 4, "DFSK": 3, "LEXUS": 2, "SUZUKI": 2, "SKODA": 2, "BAIC": 2, "HYUNDA": 2, "CITROEN": 1, "FIAT": 1, "ZXAUTO": 1, "FOTON": 1, "JETOUR": 1, "SOUEAST": 1, "DOMY": 1, "LADA": 1, "MG": 1, "GLORY": 1}, "2026": {"HYUNDAI": 144, "KIA": 63, "CHEVROLET": 45, "MAZDA": 13, "RENAULT": 13, "NISSAN": 11, "TOYOTA": 10, "VW": 10, "GREAT WALL": 8, "PEUGEOT": 6, "SUZUKI": 4, "LEXUS": 3, "CHERRY": 2, "SOUEST": 2, "LADA": 2, "JAC": 2, "BMW": 1, "MITSUBISHI": 1, "MERCEDES": 1, "FORD": 1, "FIAT": 1, "AUDI": 1, "HONDA": 1, "DFSK": 1, "CITROEN": 1, "ZX AUTO": 1, "SHINERAY": 1}}, "modelosByYear": {"2024": {"HYUNDAI ACCENT": 52, "HYUNDAI TUCSON": 45, "CHEVROLET SAIL": 32, "HYUNDAI SANTA FE": 25, "HYUNDAI I10": 24, "KIA SPORTAGE": 23, "HYUNDAI TUCSON IX": 20, "NISSAN XTRAIL": 19, "HYUNDAI CRETA": 17, "KIA PICANTO": 16, "HYUNDAI ELANTRA": 16, "HYUNDAI TUCSON TL": 16, "MAZDA BT50": 15, "HYUNDAI IONIQ": 14, "RENAULT DUSTER": 13}, "2025": {"HYUNDAI CRETA": 48, "HYUNDAI SANTA FE": 46, "HYUNDAI TUCSON": 45, "HYUNDAI TUCSON TL": 41, "KIA SPORTAGE": 39, "HYUNDAI GRAND I10": 36, "HYUNDAI IONIQ": 26, "HYUNDAI ACCENT": 23, "HYUNDAI I10": 23, "CHEVROLET SAIL": 21, "HYUNDAI TUCSON IX": 18, "HYUNDAI TUCSON NX4": 16, "KIA SOLUTO": 16, "RENAULT DUSTER": 15, "RENAULT LOGAN": 13}, "2026": {"HYUNDAI SANTA FE": 18, "HYUNDAI GRAND I10": 18, "HYUNDAI TUCSON TL": 12, "CHEVROLET SAIL": 11, "HYUNDAI ACCENT": 11, "HYUNDAI TUCSON IX": 10, "HYUNDAI TUCSON NX4": 10, "HYUNDAI H1": 10, "VW AMAROK": 9, "KIA SOLUTO": 9, "KIA SPORTAGE": 8, "HYUNDAI CRETA": 8, "HYUNDAI TUCSON": 7, "RENAULT LOGAN": 6, "KIA CARENS": 6}}, "tipoByYear": {"2024": {"Express": 327, "Mantenimiento": 294, "Especializado": 109, "0": 92}, "2025": {"Express": 333, "Mantenimiento": 329, "Especializado": 188, "0": 12}, "2026": {"Express": 226, "Mantenimiento": 99, "Especializado": 23, "0": 1}}};
 
 /* ===================== CAPA DE DATOS ===================== */
 const hasCloud = !!(FIREBASE_CONFIG && FIREBASE_CONFIG.projectId);
 let DB;
 function makeLocalDB(){
-  const read=k=>{try{return JSON.parse(localStorage.getItem("byp2_"+k))}catch(e){return null}};
-  const arr=k=>read(k)||[]; const write=(k,v)=>localStorage.setItem("byp2_"+k,JSON.stringify(v));
+  const read=k=>{try{return JSON.parse(localStorage.getItem("bypf_"+k))}catch(e){return null}};
+  const arr=k=>read(k)||[]; const write=(k,v)=>localStorage.setItem("bypf_"+k,JSON.stringify(v));
   if(!read("techs")) write("techs",TECNICOS_INICIALES);
   if(!read("settings")) write("settings",DEFAULTS);
   const subs={jobs:[],techs:[],orders:[],settings:[]};
@@ -207,6 +397,10 @@ function makeLocalDB(){
     onJobs(cb){subs.jobs.push(cb);cb(arr("jobs"));},
     saveJob(j){const a=arr("jobs");const i=a.findIndex(x=>x.id===j.id);i>=0?a[i]=j:a.push(j);write("jobs",a);emit("jobs");},
     delJob(id){write("jobs",arr("jobs").filter(x=>x.id!==id));emit("jobs");},
+    onDevices(cb){subs.devices=subs.devices||[];subs.devices.push(cb);cb(arr("devices"));},
+    async getDevice(id){return arr("devices").find(x=>x.id===id)||null;},
+    async saveDevice(d){const a=arr("devices");const i=a.findIndex(x=>x.id===d.id);i>=0?a[i]=d:a.push(d);write("devices",a);(subs.devices||[]).forEach(cb=>cb(a));},
+    async delDevice(id){const a=arr("devices").filter(x=>x.id!==id);write("devices",a);(subs.devices||[]).forEach(cb=>cb(a));},
   };
 }
 async function makeCloudDB(){
@@ -229,12 +423,17 @@ async function makeCloudDB(){
     onJobs(cb){fs.onSnapshot(fs.collection(db,"jobs"),s=>cb(s.docs.map(d=>d.data())));},
     saveJob(j){fs.setDoc(fs.doc(db,"jobs",j.id),j);},
     delJob(id){fs.deleteDoc(fs.doc(db,"jobs",id));},
+    onDevices(cb){fs.onSnapshot(fs.collection(db,"devices"),s=>cb(s.docs.map(d=>d.data())));},
+    async getDevice(id){const d=await fs.getDoc(fs.doc(db,"devices",id));return d.exists()?d.data():null;},
+    async saveDevice(d){await fs.setDoc(fs.doc(db,"devices",d.id),d);},
+    async delDevice(id){await fs.deleteDoc(fs.doc(db,"devices",id));},
   };
 }
 
 /* ===================== ESTADO ===================== */
 let SET={...DEFAULTS}, TECHS=[], ORDERS=[], JOBS=[];
-let session=null, dashPeriod="anio", dashYear=new Date().getFullYear(), coordShowClosed=false;
+let session=null, dashPeriod="anio", dashYear=new Date().getFullYear(), dashTec="all", coordShowClosed=false, teamOpen=false;
+let ChartLib=null, chartInstances=[];
 
 /* ===================== UTILIDADES ===================== */
 const $=s=>document.querySelector(s); const app=$("#app");
@@ -242,12 +441,13 @@ const uid=()=>Math.random().toString(36).slice(2,9);
 const money=n=>"$"+(Number(n)||0).toLocaleString("es-EC",{minimumFractionDigits:2,maximumFractionDigits:2});
 const hrs=n=>(Number(n)||0).toFixed(1)+" h";
 const num=v=>Number(v)||0;
+const pct2=n=>(Number(n)||0).toFixed(2)+"%";
 function jobSecs(j){let s=0;const now=Date.now();(j.segments||[]).forEach(g=>s+=((g.e||now)-g.s)/1000);return s;}
 const jobReal=j=>jobSecs(j)/3600;
 const fmtClock=secs=>{secs=Math.max(0,Math.floor(secs));const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;};
 function monday(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setHours(0,0,0,0);x.setDate(x.getDate()-day);return x.getTime();}
 const billed=j=>num(j.horasFacturadas)*num(SET.rate);
-const jobTotal=j=>billed(j)+num(j.valorRepuestos)+num(j.valorServicioExterno);
+const jobPay=j=>billed(j)*num(SET.commission);
 const labelEstado=e=>({asignado:"Asignado",en_curso:"En curso",pausado:"En pausa",terminado:"Terminado"}[e]||e);
 function tsToInput(ts){const d=new Date(ts||Date.now());const p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;}
 const inputToTs=v=>v?new Date(v).getTime():null;
@@ -255,6 +455,37 @@ const fmtDT=ts=>ts?new Date(ts).toLocaleString("es-EC",{day:"2-digit",month:"2-d
 const jobsOf=oid=>JOBS.filter(j=>j.orderId===oid);
 const getOrder=id=>JSON.parse(JSON.stringify(ORDERS.find(o=>o.id===id)));
 const getJob=id=>JSON.parse(JSON.stringify(JOBS.find(j=>j.id===id)));
+const techActiveJob=tid=>JOBS.find(j=>j.tecnicoId===tid&&j.estado==="en_curso");
+
+// Estado general de una orden
+function orderEstado(o){
+  const js=jobsOf(o.id);
+  if(!js.length) return "sin_asignar";
+  if(js.some(j=>j.estado==="en_curso")) return "activo";
+  if(js.every(j=>j.estado==="terminado")) return "terminado";
+  if(js.some(j=>j.estado==="pausado")) return "pausado";
+  if(js.every(j=>j.estado==="asignado")) return "asignado";
+  return "proceso";
+}
+const ESTADO_LABEL={sin_asignar:"Sin asignar",asignado:"Asignado sin empezar",activo:"Activo (en trabajo)",pausado:"En pausa",terminado:"Terminado",proceso:"En proceso"};
+const allDone=o=>{const js=jobsOf(o.id);return js.length>0&&js.every(j=>j.estado==="terminado");};
+
+// Tiempos de pausa por causa (segundos) para un trabajo
+function pauseByCause(j){
+  const segs=(j.segments||[]); const out={};
+  for(let i=0;i<segs.length;i++){
+    const s=segs[i];
+    if(s.reason && s.e){
+      let endPause;
+      if(i+1<segs.length) endPause=segs[i+1].s;
+      else endPause=(j.estado==="terminado"&&j.finishedAt)?j.finishedAt:Date.now();
+      const dur=(endPause-s.e)/1000;
+      if(dur>0) out[s.reason]=(out[s.reason]||0)+dur;
+    }
+  }
+  return out;
+}
+function orderPauseByCause(o){const acc={};jobsOf(o.id).forEach(j=>{const m=pauseByCause(j);for(const k in m)acc[k]=(acc[k]||0)+m[k];});return acc;}
 
 function orderInPeriod(o){
   const ref=o.ingresoAt||o.createdAt||Date.now(); const d=new Date(ref); const now=new Date();
@@ -263,32 +494,86 @@ function orderInPeriod(o){
   if(dashPeriod==="anio") return d.getFullYear()===dashYear;
   return true;
 }
+function histInPeriod(){
+  const now=new Date();
+  if(dashPeriod==="semana") return [];
+  if(dashPeriod==="mes") return HIST.monthly.filter(r=>r.y===now.getFullYear()&&r.m===now.getMonth());
+  if(dashPeriod==="anio") return HIST.monthly.filter(r=>r.y===dashYear);
+  return HIST.monthly.slice();
+}
 function weeksInPeriod(){
   if(dashPeriod==="semana")return 1;
   if(dashPeriod==="mes")return 4.345;
   if(dashPeriod==="anio")return 52;
-  const yrs=new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear())); return Math.max(1,yrs.size)*52;
+  const yrs=new Set([...ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()), ...HIST.monthly.map(r=>r.y)]); return Math.max(1,yrs.size)*52;
 }
 function metaFactPeriodo(){
   const m=num(SET.metaFacturacionMensual);
   if(dashPeriod==="semana")return m/4.345; if(dashPeriod==="mes")return m; if(dashPeriod==="anio")return m*12;
-  const yrs=new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear())); return m*12*Math.max(1,yrs.size);
+  const yrs=new Set([...ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()), ...HIST.monthly.map(r=>r.y)]); return m*12*Math.max(1,yrs.size);
 }
+function allYears(){return [...new Set([...HIST.monthly.map(r=>r.y), ...ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear())])].sort((a,b)=>b-a);}
 
 /* ===================== ARRANQUE ===================== */
+if(!BLOQUEADO){
 (async function boot(){
   try{ DB=hasCloud?await makeCloudDB():makeLocalDB(); }
-  catch(e){ console.error(e); DB=makeLocalDB(); alert("No se pudo conectar a la nube; sigo en modo local en este dispositivo. Revisa tu config de Firebase."); }
+  catch(e){ console.error(e); DB=makeLocalDB(); alert("No se pudo conectar a la nube; sigo en modo local en este dispositivo. Revisa tu config de Firebase y los dominios autorizados."); }
   $("#modeBadge").textContent=DB.mode==="cloud"?"Nube · en vivo":"Modo local";
   $("#modeBadge").className="pill "+(DB.mode==="cloud"?"live":"local");
+
+  /* --- cerrojo de dispositivo --- */
+  const local=dispVigente();
+  let autorizado=false;
+  if(local){
+    try{
+      const reg=await DB.getDevice(local.id);
+      if(reg && reg.activo!==false){
+        autorizado=true;
+        DB.saveDevice({...reg,nombre:reg.nombre||local.nombre,visto:Date.now()});
+      } else if(reg && reg.activo===false){
+        pantallaRevocado("El Ing. Marco Ballesteros retiró el acceso de este equipo. Si crees que es un error, comunícate con él.");
+        return;
+      }
+    }catch(e){ autorizado=true; }   /* sin conexión: se confía en la activación local */
+  }
+  if(!autorizado){
+    document.body.style.visibility="visible";
+    pantallaActivacion(async d=>{
+      await DB.saveDevice({id:d.id,nombre:d.nombre,equipo:d.equipo,activo:true,desde:d.desde,visto:d.desde});
+      return {ok:true};
+    });
+    const previo=dispLeer();
+    if(previo){ const e=$("#cjErr"); if(e){ e.style.display="block";
+      e.textContent="Se retiró el acceso de este equipo. Vuelve a activarlo con el código."; } }
+    return;
+  }
+  DEVICE=local;
+  DB.onDevices(list=>{
+    DEVICES=list;
+    const yo=list.find(x=>x.id===(DEVICE&&DEVICE.id));
+    if(DEVICE && (!yo || yo.activo===false)){
+      pantallaRevocado("El Ing. Marco Ballesteros acaba de retirar el acceso de este equipo.");
+      DEVICE=null; return;
+    }
+    if(dashOpen) renderDevices();
+  });
+
   DB.onSettings(s=>{SET={...DEFAULTS,...s};applyLogo();render();});
-  DB.onTechs(t=>{TECHS=t.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre));render();});
+  DB.onTechs(t=>{TECHS=t.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre));render();if(teamOpen)renderTeamModal();});
   DB.onOrders(o=>{ORDERS=o;render();});
   DB.onJobs(j=>{JOBS=j;render();});
   buildPinPad(); setInterval(tick,1000);
 })();
+}
 $("#logoutBtn").onclick=()=>{session=null;$("#logoutBtn").style.display="none";render();};
 function applyLogo(){const b=$("#logoBox");if(SET.logo){b.innerHTML=`<img src="${SET.logo}" alt="logo">`;}else{b.textContent="BP";}}
+
+/* setters expuestos (los handlers inline corren en scope global) */
+window.setPeriod=p=>{dashPeriod=p;renderDash();};
+window.setYear=y=>{dashYear=+y;renderDash();};
+window.setDashTec=id=>{dashTec=id;renderDash();};
+window.toggleClosed=()=>{coordShowClosed=!coordShowClosed;renderCoord();};
 
 /* ===================== RENDER ===================== */
 function render(){
@@ -299,66 +584,91 @@ function render(){
   else renderDash();
 }
 function renderGate(){
+  destroyCharts();
   app.innerHTML=`<div class="hero"><span class="eyebrow">Hyundai · Kia · Sur de Quito</span>
     <h1 class="display">Control de productividad por técnico</h1>
-    <p>Un vehículo (una OT) puede tener varios trabajos. Asigna mano de obra, mide tiempos reales y evalúa MOU, eficiencia y productividad. El pago se calcula sobre horas facturadas, no sobre el cronómetro.</p></div>
+    <p>Un vehículo (una OT) puede tener varios trabajos. El cliente paga las horas asignadas y sobre eso se calcula el 30%; el cronómetro mide la eficiencia.</p></div>
     <div class="gate">
-      <div class="role"><div class="ic">🧰</div><h3>Técnico</h3><p>Activa, pausa (con causa) y termina tus trabajos. Mira tus horas y tu mano de obra facturada.</p><button onclick="pickTech()">Entrar como técnico</button></div>
-      <div class="role"><div class="ic">📋</div><h3>Coordinador</h3><p>Crea órdenes por vehículo, agrega trabajos a la misma OT y cierra facturando.</p><button onclick="askPin('coord')">Entrar como coordinador</button></div>
-      <div class="role"><div class="ic">📊</div><h3>Tablero</h3><p>Indicadores, metas, mezcla, marcas y exportación a Excel.</p><button onclick="askPin('dash')">Ver tablero</button></div>
+      <div class="role"><div class="ic">🧰</div><h3>Técnico</h3><p>Activa, pausa (con causa) y termina tus trabajos. Mira tu facturación y tu eficiencia.</p><button onclick="pickTech()">Entrar como técnico</button></div>
+      <div class="role"><div class="ic">📋</div><h3>Coordinador</h3><p>Crea órdenes, asigna trabajos, controla el estado del taller y factura la OT completa.</p><button onclick="askPin('coord')">Entrar como coordinador</button></div>
+      <div class="role"><div class="ic">📊</div><h3>Tablero</h3><p>Indicadores visuales, metas, productividad del taller e histórico 2024–2026.</p><button onclick="askPin('dash')">Ver tablero</button></div>
     </div>`;
 }
 
 /* ---------- TÉCNICO ---------- */
 function renderTech(){
+  destroyCharts();
   const tech=TECHS.find(t=>t.id===session.techId); if(!tech){session=null;return render();}
-  const mine=JOBS.filter(j=>j.tecnicoId===tech.id&&j.estado!=="terminado");
-  const wk=JOBS.filter(j=>j.tecnicoId===tech.id&&(j.finishedAt?j.finishedAt:j.createdAt)>=monday(new Date()));
-  const billedH=wk.reduce((s,j)=>s+num(j.horasFacturadas),0);
-  const moFact=billedH*num(SET.rate);
-  const realH=wk.reduce((s,j)=>s+jobReal(j),0);
+  const now=new Date();
+  const myJobs=JOBS.filter(j=>j.tecnicoId===tech.id);
+  const mine=myJobs.filter(j=>j.estado!=="terminado");
   const active=mine.find(j=>j.estado==="en_curso");
+  const enPausa=mine.filter(j=>j.estado==="pausado");
+  const asignados=mine.filter(j=>j.estado==="asignado");
+  // mes en curso (no acumulado): trabajos cuya orden fue facturada este mes
+  const mesJobs=myJobs.filter(j=>{const o=ORDERS.find(x=>x.id===j.orderId);return o&&o.facturadoAt&&new Date(o.facturadoAt).getMonth()===now.getMonth()&&new Date(o.facturadoAt).getFullYear()===now.getFullYear();});
+  const facMes=mesJobs.reduce((s,j)=>s+billed(j),0);
+  const hAsigMes=mesJobs.reduce((s,j)=>s+num(j.horasFacturadas),0);
+  // eficiencia del mes: horas asignadas / horas reales (trabajos terminados del mes)
+  const termMes=myJobs.filter(j=>j.estado==="terminado"&&j.finishedAt&&new Date(j.finishedAt).getMonth()===now.getMonth()&&new Date(j.finishedAt).getFullYear()===now.getFullYear());
+  const asigT=termMes.reduce((s,j)=>s+num(j.horasAsignadas),0);
+  const realT=termMes.reduce((s,j)=>s+jobReal(j),0);
+  const efic=realT>0?asigT/realT*100:0;
+  const tieneActivo=!!active;
   app.innerHTML=`
     <div class="earn">
-      <div class="lbl">Hola, ${tech.nombre.split(" ")[0]} · tu semana</div>
-      <div class="big">${money(moFact)}</div>
+      <div class="lbl">Hola, ${tech.nombre.split(" ")[0]} · ${MESES[now.getMonth()]} ${now.getFullYear()}</div>
+      <div class="big">${money(facMes)}</div>
       <div class="sub">
-        <div>Mano de obra facturada<b>${billedH.toFixed(1)} h</b></div>
-        <div>Horas trabajadas<b>${realH.toFixed(1)} h</b></div>
+        <div>Facturado del mes<b>${money(facMes)}</b></div>
+        <div>Horas asignadas (base del pago)<b>${hAsigMes.toFixed(1)} h</b></div>
+        <div>Tu eficiencia<b>${efic.toFixed(2)}%</b></div>
         <div>Trabajo activo<b id="liveClock">${active?fmtClock(jobSecs(active)):"—"}</b></div>
       </div>
     </div>
-    <div class="sectiontitle" style="margin-top:22px"><h2>Mis trabajos</h2></div>
-    <div>${mine.length?mine.map(techJobCard).join(""):emptyState("🔧","No tienes trabajos asignados","Cuando el coordinador te asigne uno, aparecerá aquí.")}</div>`;
+    ${active?`<div class="sectiontitle" style="margin-top:20px"><h2>▶ Trabajo activo</h2></div><div>${techJobCard(active,tieneActivo)}</div>`:""}
+    ${enPausa.length?`<div class="sectiontitle" style="margin-top:18px"><h2>⏸ En pausa (${enPausa.length})</h2></div><div>${enPausa.map(j=>techJobCard(j,tieneActivo)).join("")}</div>`:""}
+    <div class="sectiontitle" style="margin-top:18px"><h2>📋 Asignados (${asignados.length})</h2></div>
+    <div>${asignados.length?asignados.map(j=>techJobCard(j,tieneActivo)).join(""):emptyState("🔧","Sin trabajos asignados","Cuando el coordinador te asigne uno, aparecerá aquí.")}</div>
+    ${tieneActivo?'<div class="note">Solo puedes tener <b>un trabajo activo a la vez</b>. Para iniciar o reanudar otro, primero pausa o termina el que está en curso.</div>':""}`;
 }
-function techJobCard(j){
+function techJobCard(j,tieneActivo){
   const o=ORDERS.find(x=>x.id===j.orderId)||{};
+  const blockStart=tieneActivo&&j.estado!=="en_curso";
   return `<div class="job ${j.estado}">
     <div class="head"><div><div class="veh">${o.marca||"—"} ${o.modelo||""} <span class="ot">· OT ${o.ot||"s/n"} · ${o.placa||""}</span></div>
       <div style="font-size:14px;margin-top:2px">${j.moDesc||""}</div></div>
       <span class="tag ${j.tipo||"Express"}">${j.tipo||"Express"}</span></div>
     <div class="timeline">
-      <div class="b">Estándar<b>${hrs(j.horasAsignadas)}</b></div>
+      <div class="b">Asignado<b>${hrs(j.horasAsignadas)}</b></div>
       <div class="b">Tiempo real<b class="clk" data-id="${j.id}">${fmtClock(jobSecs(j))}</b></div>
       <div class="b">Estado<b style="font-size:13px;color:var(--${j.estado==='en_curso'?'ok':j.estado==='pausado'?'warn':'slate'})">${labelEstado(j.estado)}${j.estado==='pausado'&&j.pauseReason?' · '+j.pauseReason:''}</b></div>
     </div>
     <div class="controls">
-      ${j.estado==="asignado"?`<button class="btn btn-ok" onclick="startJob('${j.id}')">▶ Iniciar</button>`:""}
+      ${j.estado==="asignado"?`<button class="btn btn-ok" onclick="startJob('${j.id}')" ${blockStart?"disabled":""}>▶ Iniciar</button>`:""}
       ${j.estado==="en_curso"?`<button class="btn btn-warn" onclick="askPause('${j.id}')">⏸ Pausar</button>`:""}
-      ${j.estado==="pausado"?`<button class="btn btn-ok" onclick="resumeJob('${j.id}')">▶ Reanudar</button>`:""}
+      ${j.estado==="pausado"?`<button class="btn btn-ok" onclick="resumeJob('${j.id}')" ${blockStart?"disabled":""}>▶ Reanudar</button>`:""}
       ${j.estado!=="terminado"?`<button class="btn btn-line" onclick="finishJob('${j.id}')">✓ Terminar</button>`:""}
     </div></div>`;
 }
-window.startJob=id=>{const j=getJob(id);j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
+window.startJob=id=>{const j=getJob(id);if(techActiveJob(j.tecnicoId)){alert("Ya tienes un trabajo activo. Pausa o termina ese antes de iniciar otro.");return;}j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
 window.askPause=id=>{ modal(`<h2 style="margin:0 0 10px">¿Por qué pausas?</h2><div class="reasons">${PAUSAS.map(r=>`<button class="btn btn-line" onclick="pauseJob('${id}','${r.replace(/'/g,"")}')">${r}</button>`).join("")}</div><button class="btn btn-line" style="width:100%" onclick="closeModal()">Cancelar</button>`); };
 window.pauseJob=(id,reason)=>{closeModal();const j=getJob(id);const seg=(j.segments||[]).find(s=>!s.e);if(seg){seg.e=Date.now();seg.reason=reason;}j.estado="pausado";j.pauseReason=reason;DB.saveJob(j);};
-window.resumeJob=id=>{const j=getJob(id);j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
-window.finishJob=id=>{const j=getJob(id);const seg=(j.segments||[]).find(s=>!s.e);if(seg)seg.e=Date.now();j.estado="terminado";j.finishedAt=Date.now();j.pauseReason=null;DB.saveJob(j);alert("Trabajo terminado. El coordinador confirmará las horas facturadas al cerrar la orden.");};
+window.resumeJob=id=>{const j=getJob(id);if(techActiveJob(j.tecnicoId)){alert("Ya tienes un trabajo activo. Pausa o termina ese antes de reanudar otro.");return;}j.segments=j.segments||[];j.segments.push({s:Date.now(),e:null});j.estado="en_curso";j.pauseReason=null;DB.saveJob(j);};
+window.finishJob=id=>{const j=getJob(id);const seg=(j.segments||[]).find(s=>!s.e);if(seg)seg.e=Date.now();j.estado="terminado";j.finishedAt=Date.now();j.pauseReason=null;DB.saveJob(j);};
 
 /* ---------- COORDINADOR ---------- */
 function renderCoord(){
+  destroyCharts();
   const open=ORDERS.filter(o=>!o.salidaAt).sort((a,b)=>(a.ingresoAt||0)-(b.ingresoAt||0));
   const closed=ORDERS.filter(o=>o.salidaAt).sort((a,b)=>(b.salidaAt||0)-(a.salidaAt||0)).slice(0,15);
+  // estado del taller
+  const counts={sin_asignar:0,asignado:0,activo:0,pausado:0,terminado:0,proceso:0};
+  open.forEach(o=>counts[orderEstado(o)]++);
+  // tiempos de demora por causa (taller, autos en taller)
+  const causeAcc={};
+  open.forEach(o=>{const m=orderPauseByCause(o);for(const k in m)causeAcc[k]=(causeAcc[k]||0)+m[k];});
+  const causeArr=Object.entries(causeAcc).sort((a,b)=>b[1]-a[1]);
   app.innerHTML=`
   <div class="row" style="align-items:flex-start">
     <div class="panel pad" style="flex:1;min-width:300px">
@@ -377,54 +687,70 @@ function renderCoord(){
       </div>
       <div class="field"><label class="f">Fecha y hora de ingreso</label><input class="t" id="o_ing" type="datetime-local" value="${tsToInput(Date.now())}"></div>
       <button class="btn btn-primary" style="width:100%" onclick="createOrder()">Registrar ingreso</button>
-      <div class="note">Después de registrar el vehículo, agrégale uno o varios trabajos (misma OT). El tablero lo contará como <b>un solo auto</b> con su facturación sumada.</div>
+      <div class="note">Agrega uno o varios trabajos a la misma OT. La facturación se hace <b>una sola vez por auto</b>, al terminar todos los trabajos.</div>
       <div class="row" style="margin-top:14px"><button class="btn btn-line btn-sm" style="flex:1" onclick="openSettings()">⚙ Ajustes</button><button class="btn btn-line btn-sm" style="flex:1" onclick="openTeam()">👷 Equipo</button></div>
+      <div class="row" style="margin-top:8px"><button class="btn btn-line btn-sm" style="flex:1" onclick="openDevices()">🔐 Equipos autorizados (${DEVICES.length})</button></div>
     </div>
-
-    <div style="flex:1.4;min-width:330px">
-      <div class="sectiontitle"><h2>En taller (${open.length})</h2></div>
+    <div style="flex:1.5;min-width:340px">
+      <div class="panel pad" style="margin-bottom:14px">
+        <span class="eyebrow">Estado del taller</span><h2 style="margin:2px 0 12px">Vehículos en taller (${open.length})</h2>
+        <div class="stategrid">
+          <div class="statecard"><div class="n" style="color:var(--slate)">${counts.sin_asignar}</div><div class="l">Sin asignar</div></div>
+          <div class="statecard"><div class="n" style="color:var(--slate)">${counts.asignado}</div><div class="l">Asignado sin empezar</div></div>
+          <div class="statecard"><div class="n" style="color:var(--ok)">${counts.activo}</div><div class="l">Activo</div></div>
+          <div class="statecard"><div class="n" style="color:var(--warn)">${counts.pausado}</div><div class="l">En pausa</div></div>
+          <div class="statecard"><div class="n" style="color:var(--done)">${counts.terminado}</div><div class="l">Terminado</div></div>
+        </div>
+        ${causeArr.length?`<div style="margin-top:6px"><div class="muted" style="font-size:12px;margin-bottom:4px">Tiempo de demora acumulado por causa (autos en taller):</div>${causeArr.map(([c,sec])=>`<span class="causechip">${c}: <b>${(sec/3600).toFixed(1)} h</b></span>`).join("")}</div>`:""}
+      </div>
+      <div class="sectiontitle"><h2>En taller</h2></div>
       <div>${open.length?open.map(orderCard).join(""):emptyState("🚗","Sin vehículos en taller","Registra un ingreso para empezar.")}</div>
       <div class="sectiontitle" style="margin-top:18px"><h2 style="font-size:17px">Entregados</h2>
-        <button class="btn btn-line btn-sm" onclick="coordShowClosed=!coordShowClosed;render()">${coordShowClosed?"Ocultar":"Mostrar"}</button></div>
+        <button class="btn btn-line btn-sm" onclick="toggleClosed()">${coordShowClosed?"Ocultar":"Mostrar"}</button></div>
       ${coordShowClosed?`<div>${closed.length?closed.map(orderCard).join(""):'<p class="muted">Aún no hay entregados.</p>'}</div>`:""}
     </div>
   </div>`;
 }
-function orderHoras(o){const js=jobsOf(o.id);return{asig:js.reduce((s,j)=>s+num(j.horasAsignadas),0),fact:js.reduce((s,j)=>s+num(j.horasFacturadas),0),total:js.reduce((s,j)=>s+jobTotal(j),0)};}
-function isParalizado(o){if(o.salidaAt)return false;const js=jobsOf(o.id);if(!js.length)return false;const blocked=js.some(j=>j.estado==="pausado"&&/repuesto|autoriza|externo/i.test(j.pauseReason||""));const noActive=!js.some(j=>j.estado==="en_curso");const old=(Date.now()-(o.ingresoAt||0))>24*3600*1000;return blocked||(noActive&&old&&js.some(j=>j.estado!=="terminado"));}
 function orderCard(o){
-  const js=jobsOf(o.id); const h=orderHoras(o); const par=isParalizado(o);
+  const js=jobsOf(o.id); const est=orderEstado(o);
+  const total=js.reduce((s,j)=>s+billed(j),0)+num(o.valorRepuestos)+num(o.valorServicioExterno);
   const enTaller=o.salidaAt?((o.salidaAt-o.ingresoAt)/3600000):((Date.now()-(o.ingresoAt||Date.now()))/3600000);
+  const par=est==="pausado"&&Object.keys(orderPauseByCause(o)).some(k=>/repuesto|autoriza|externo/i.test(k));
+  const done=allDone(o); const pausaCausas=orderPauseByCause(o);
   return `<div class="order ${par?'paralizado':''}">
     <div class="head">
       <div><div class="veh">${o.marca||"—"} ${o.modelo||""} <span class="ot">· OT ${o.ot||"s/n"} · ${o.placa||""}</span></div>
-        <div class="muted" style="font-size:12.5px;margin-top:2px">Ingreso ${fmtDT(o.ingresoAt)} · ${o.salidaAt?("entregado "+fmtDT(o.salidaAt)):(enTaller.toFixed(1)+" h en taller")} ${par?'· <b style="color:var(--danger)">PARALIZADO</b>':''}</div></div>
-      <div style="text-align:right"><div class="num" style="font-size:18px;color:var(--azul)">${money(h.total)}</div><div class="muted" style="font-size:11px">total OT</div></div>
+        <div class="muted" style="font-size:12.5px;margin-top:2px"><b style="color:var(--${est==='activo'?'ok':est==='pausado'?'warn':est==='terminado'?'done':'slate'})">${ESTADO_LABEL[est]}</b> · Ingreso ${fmtDT(o.ingresoAt)} · ${o.salidaAt?("entregado "+fmtDT(o.salidaAt)):(enTaller.toFixed(1)+" h en taller")}</div></div>
+      <div style="text-align:right"><div class="num" style="font-size:18px;color:var(--azul)">${money(total)}</div><div class="muted" style="font-size:11px">${o.facturadoAt?'facturado':'estimado'}</div></div>
     </div>
     ${js.map(j=>{const t=TECHS.find(x=>x.id===j.tecnicoId);return `<div class="subjob ${j.estado}"><div class="r">
-        <div><b>${j.moDesc}</b> <span class="tag ${j.tipo}">${j.tipo}</span><div class="muted" style="font-size:12px">${t?t.nombre:"?"} · estándar ${hrs(j.horasAsignadas)} · real <span class="clk" data-id="${j.id}">${fmtClock(jobSecs(j))}</span> · <span class="status ${j.estado}">${labelEstado(j.estado)}</span>${j.estado==='pausado'&&j.pauseReason?' ('+j.pauseReason+')':''}</div></div>
-        <div style="text-align:right">${j.horasFacturadas!=null?('<div class="num">'+money(billed(j))+'</div><div class="muted" style="font-size:11px">'+hrs(j.horasFacturadas)+' fact.</div>'):'<button class="btn btn-gold btn-sm" onclick="openClose(\''+j.id+'\')">Facturar</button>'}</div>
+        <div><b>${j.moDesc}</b> <span class="tag ${j.tipo}">${j.tipo}</span><div class="muted" style="font-size:12px">${t?t.nombre:"?"} · asignado ${hrs(j.horasAsignadas)} · real <span class="clk" data-id="${j.id}">${fmtClock(jobSecs(j))}</span> · <span class="status ${j.estado}">${labelEstado(j.estado)}</span>${j.estado==='pausado'&&j.pauseReason?' ('+j.pauseReason+')':''}</div></div>
+        <div style="text-align:right">${o.facturadoAt?('<div class="num">'+money(billed(j))+'</div>'):''}</div>
       </div></div>`;}).join("")}
+    ${Object.keys(pausaCausas).length?`<div style="margin-top:8px">${Object.entries(pausaCausas).map(([c,sec])=>`<span class="causechip">${c}: <b>${(sec/3600).toFixed(1)} h</b></span>`).join("")}</div>`:""}
     <div class="controls" style="margin-top:10px">
       <button class="btn btn-primary btn-sm" onclick="openAddJob('${o.id}')">+ Agregar trabajo</button>
-      ${!o.salidaAt?`<button class="btn btn-ok btn-sm" onclick="openSalida('${o.id}')">🚚 Marcar salida</button>`:""}
-      <button class="btn btn-danger btn-sm" onclick="askDeleteOrder('${o.id}')">Eliminar OT</button>
-    </div></div>`;
+      ${!o.facturadoAt?`<button class="btn btn-gold btn-sm" onclick="openInvoice('${o.id}')" ${done?"":"disabled"}>🧾 Facturar orden</button>`:""}
+      ${!o.salidaAt?`<button class="btn btn-ok btn-sm" onclick="openSalida('${o.id}')" ${done?"":"disabled"}>🚚 Marcar salida</button>`:""}
+      <button class="btn btn-danger btn-sm" onclick="askDeleteOrder('${o.id}')">Eliminar</button>
+    </div>
+    ${!done&&js.length?'<div class="muted" style="font-size:11.5px;margin-top:6px">Para facturar y dar salida, todos los trabajos deben estar <b>Terminado</b>.</div>':""}
+  </div>`;
 }
 window.createOrder=()=>{
   const v=s=>$(s).value.trim();
   if(!v("#o_placa")&&!v("#o_ot")){alert("Ingresa al menos placa u OT.");return;}
-  const o={id:uid(),ot:v("#o_ot"),placa:v("#o_placa").toUpperCase(),marca:v("#o_marca"),modelo:v("#o_modelo"),anio:v("#o_anio"),cliente:v("#o_cliente"),ingresoAt:inputToTs($("#o_ing").value)||Date.now(),salidaAt:null,createdAt:Date.now()};
+  const o={id:uid(),ot:v("#o_ot"),placa:v("#o_placa").toUpperCase(),marca:v("#o_marca"),modelo:v("#o_modelo"),anio:v("#o_anio"),cliente:v("#o_cliente"),ingresoAt:inputToTs($("#o_ing").value)||Date.now(),salidaAt:null,facturadoAt:null,valorRepuestos:0,valorServicioExterno:0,createdAt:Date.now()};
   DB.saveOrder(o);
   ["#o_ot","#o_placa","#o_modelo","#o_anio","#o_cliente"].forEach(s=>$(s).value="");
-  setTimeout(()=>openAddJob(o.id),120);
+  setTimeout(()=>openAddJob(o.id),150);
 };
 window.openAddJob=oid=>{
   const o=ORDERS.find(x=>x.id===oid)||{ot:"",marca:"",modelo:""}; const opts=TECHS.filter(t=>t.activo).map(t=>`<option value="${t.id}">${t.nombre}</option>`).join("");
   modal(`<h2 style="margin:0 0 4px">Agregar trabajo</h2><p class="muted" style="margin:0 0 12px;font-size:13px">${o.marca} ${o.modelo} · OT ${o.ot||""}</p>
     <div class="field"><label class="f">Mano de obra</label><input class="t" id="j_mo" placeholder="Ej. Cambio de pastillas"></div>
     <div class="three">
-      <div class="field"><label class="f">Horas estándar</label><input class="t" id="j_h" type="number" step="0.25" placeholder="0.5"></div>
+      <div class="field"><label class="f">Horas asignadas</label><input class="t" id="j_h" type="number" step="0.25" placeholder="0.5"></div>
       <div class="field"><label class="f">Tipo</label><select class="t" id="j_tipo"><option>Express</option><option>Mantenimiento</option><option>Especializado</option></select></div>
       <div class="field"><label class="f">Técnico</label><select class="t" id="j_tec">${opts}</select></div>
     </div>
@@ -432,37 +758,73 @@ window.openAddJob=oid=>{
 };
 window.addJob=oid=>{
   const mo=$("#j_mo").value.trim(); if(!mo){alert("Escribe la mano de obra.");return;}
-  const j={id:uid(),orderId:oid,moDesc:mo,tipo:$("#j_tipo").value,tecnicoId:$("#j_tec").value,horasAsignadas:num($("#j_h").value),horasFacturadas:null,valorRepuestos:0,valorServicioExterno:0,estado:"asignado",segments:[],pauseReason:null,createdAt:Date.now(),finishedAt:null};
+  const j={id:uid(),orderId:oid,moDesc:mo,tipo:$("#j_tipo").value,tecnicoId:$("#j_tec").value,horasAsignadas:num($("#j_h").value),horasFacturadas:num($("#j_h").value),estado:"asignado",segments:[],pauseReason:null,createdAt:Date.now(),finishedAt:null};
   DB.saveJob(j); closeModal();
 };
-window.openClose=id=>{
-  const j=JOBS.find(x=>x.id===id); const real=jobReal(j).toFixed(2);
-  modal(`<h2 style="margin:0 0 4px">Facturar trabajo</h2><p class="muted" style="margin:0 0 12px;font-size:13px">${j.moDesc}</p>
-    <div class="note" style="margin:0 0 12px">Tiempo real: <b>${real} h</b> · Estándar: <b>${j.horasAsignadas} h</b></div>
-    <div class="field"><label class="f">Horas facturadas (define el pago)</label><input class="t" id="c_h" type="number" step="0.25" value="${j.horasFacturadas!=null?j.horasFacturadas:j.horasAsignadas}"></div>
-    <div class="two"><div class="field"><label class="f">Repuestos $</label><input class="t" id="c_rep" type="number" step="0.01" value="${j.valorRepuestos||0}"></div>
-      <div class="field"><label class="f">Servicio externo $</label><input class="t" id="c_ext" type="number" step="0.01" value="${j.valorServicioExterno||0}"></div></div>
-    <div class="note" id="c_prev" style="margin:0 0 12px"></div>
-    <div class="row"><button class="btn btn-primary" style="flex:1" onclick="saveClose('${id}')">Guardar</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);
-  const upd=()=>{const h=num($("#c_h").value);$("#c_prev").innerHTML=`MO facturada: <b>${money(h*num(SET.rate))}</b> · Bolsa 30% (cubre comisión + IESS patronal y otros): <b>${money(h*num(SET.rate)*num(SET.commission))}</b>`;};
-  $("#c_h").addEventListener("input",upd); upd();
+window.openInvoice=oid=>{
+  const o=ORDERS.find(x=>x.id===oid); const js=jobsOf(oid);
+  modal(`<h2 style="margin:0 0 4px">Facturar orden · OT ${o.ot||""}</h2><p class="muted" style="margin:0 0 12px;font-size:13px">${o.marca} ${o.modelo} · ${o.placa||""}</p>
+    <div class="note" style="margin:0 0 12px">El cliente paga las <b>horas asignadas</b>. Ajústalas aquí si es necesario; sobre ellas se calcula el 30% de cada técnico.</div>
+    ${js.map(j=>{const t=TECHS.find(x=>x.id===j.tecnicoId);return `<div class="field"><label class="f">${j.moDesc} · ${t?t.nombre:''} (real ${jobReal(j).toFixed(2)} h)</label><input class="t inv-h" data-id="${j.id}" type="number" step="0.25" value="${j.horasFacturadas}"></div>`;}).join("")}
+    <div class="two">
+      <div class="field"><label class="f">Repuestos $ (toda la orden)</label><input class="t" id="inv_rep" type="number" step="0.01" value="${o.valorRepuestos||0}"></div>
+      <div class="field"><label class="f">Servicio externo $</label><input class="t" id="inv_ext" type="number" step="0.01" value="${o.valorServicioExterno||0}"></div>
+    </div>
+    <div class="note" id="inv_prev" style="margin:0 0 12px"></div>
+    <div class="row"><button class="btn btn-primary" style="flex:1" onclick="saveInvoice('${oid}')">Facturar</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);
+  const upd=()=>{let moH=0;document.querySelectorAll(".inv-h").forEach(el=>moH+=num(el.value));const mo=moH*num(SET.rate);const tot=mo+num($("#inv_rep").value)+num($("#inv_ext").value);$("#inv_prev").innerHTML=`Mano de obra: <b>${money(mo)}</b> · Total orden: <b>${money(tot)}</b>`;};
+  document.querySelectorAll(".inv-h").forEach(el=>el.addEventListener("input",upd));$("#inv_rep").addEventListener("input",upd);$("#inv_ext").addEventListener("input",upd);upd();
 };
-window.saveClose=id=>{const j=getJob(id);j.horasFacturadas=num($("#c_h").value);j.valorRepuestos=num($("#c_rep").value);j.valorServicioExterno=num($("#c_ext").value);if(j.estado!=="terminado"){const seg=(j.segments||[]).find(s=>!s.e);if(seg)seg.e=Date.now();j.estado="terminado";j.finishedAt=j.finishedAt||Date.now();}DB.saveJob(j);closeModal();};
-window.openSalida=oid=>{const o=ORDERS.find(x=>x.id===oid);modal(`<h2 style="margin:0 0 10px">Marcar salida</h2><div class="field"><label class="f">Fecha y hora de salida</label><input class="t" id="s_out" type="datetime-local" value="${tsToInput(Date.now())}"></div><div class="row"><button class="btn btn-ok" style="flex:1" onclick="saveSalida('${oid}')">Confirmar entrega</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);};
-window.saveSalida=oid=>{const o=getOrder(oid);o.salidaAt=inputToTs($("#s_out").value)||Date.now();DB.saveOrder(o);closeModal();};
+window.saveInvoice=oid=>{
+  const o=getOrder(oid);
+  document.querySelectorAll(".inv-h").forEach(el=>{const j=getJob(el.dataset.id);j.horasFacturadas=num(el.value);DB.saveJob(j);});
+  o.valorRepuestos=num($("#inv_rep").value);o.valorServicioExterno=num($("#inv_ext").value);o.facturadoAt=Date.now();
+  DB.saveOrder(o);closeModal();
+};
+window.openSalida=oid=>{const o=ORDERS.find(x=>x.id===oid);if(!allDone(o)){alert("No puedes dar salida: hay trabajos sin terminar.");return;}modal(`<h2 style="margin:0 0 10px">Marcar salida</h2><div class="field"><label class="f">Fecha y hora de salida</label><input class="t" id="s_out" type="datetime-local" value="${tsToInput(Date.now())}"></div><div class="row"><button class="btn btn-ok" style="flex:1" onclick="saveSalida('${oid}')">Confirmar entrega</button><button class="btn btn-line" onclick="closeModal()">Cancelar</button></div>`);};
+window.saveSalida=oid=>{const o=getOrder(oid);if(!allDone(o)){alert("Hay trabajos sin terminar.");return;}o.salidaAt=inputToTs($("#s_out").value)||Date.now();DB.saveOrder(o);closeModal();};
 window.askDeleteOrder=oid=>{const o=ORDERS.find(x=>x.id===oid);if(confirm(`¿Eliminar la OT ${o.ot||""} (${o.marca} ${o.modelo}) y todos sus trabajos? No se puede deshacer.`)){jobsOf(oid).forEach(j=>DB.delJob(j.id));DB.delOrder(oid);}};
 
-window.openTeam=()=>{modal(`<h2 style="margin:0 0 10px">Equipo y PIN</h2>
+/* equipo */
+window.openTeam=()=>{teamOpen=true;renderTeamModal();};
+function renderTeamModal(){
+  modal(`<h2 style="margin:0 0 10px">Equipo y PIN</h2>
   <div>${TECHS.map(t=>`<div class="row" style="align-items:center;margin-bottom:8px">
     <input class="t" style="flex:2" value="${t.nombre}" onchange="editTech('${t.id}','nombre',this.value)">
     <input class="t" style="flex:.8" value="${t.pin}" onchange="editTech('${t.id}','pin',this.value)">
     <select class="t" style="flex:.9" onchange="editTech('${t.id}','activo',this.value==='1')"><option value="1" ${t.activo?'selected':''}>Activo</option><option value="0" ${!t.activo?'selected':''}>Inactivo</option></select>
-    <button class="btn btn-danger btn-sm" onclick="if(confirm('¿Eliminar técnico?'))DB.delTech('${t.id}')">✕</button></div>`).join("")}</div>
+    <button class="btn btn-danger btn-sm" onclick="delTechConfirm('${t.id}','${(t.nombre||'').replace(/'/g,'')}')">✕</button></div>`).join("")}</div>
   <button class="btn btn-line" style="width:100%;margin-top:6px" onclick="addTech()">+ Agregar técnico</button>
-  <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="closeModal()">Listo</button>`);};
-window.editTech=(id,k,v)=>{const t=TECHS.find(x=>x.id===id);t[k]=v;DB.saveTech({...t});};
-window.addTech=()=>{DB.saveTech({id:uid(),nombre:"Nuevo técnico",pin:"0000",activo:true});setTimeout(openTeam,150);};
+  <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="teamOpen=false;closeModal()">Listo</button>`);
+}
+window.editTech=(id,k,v)=>{const t=TECHS.find(x=>x.id===id);if(!t)return;t[k]=v;DB.saveTech({...t});};
+window.addTech=()=>{DB.saveTech({id:uid(),nombre:"Nuevo técnico",pin:"0000",activo:true});};
+window.delTechConfirm=(id,nombre)=>{if(confirm(`¿Eliminar al técnico ${nombre}? No se borran sus trabajos históricos, solo deja de aparecer para asignar.`)){DB.delTech(id);}};
 
+window.openDevices=()=>{ dashOpen=true; renderDevices(); };
+function renderDevices(){
+  const lista=[...DEVICES].sort((a,b)=>(b.visto||0)-(a.visto||0));
+  const f=t=>t?new Date(t).toLocaleString("es-EC",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}):"—";
+  modal(`<h2 style="margin:0 0 4px">Equipos autorizados</h2>
+  <p class="muted" style="margin:0 0 12px;font-size:13px">Cada equipo que se activó con el código aparece aquí.
+     Si retiras uno, pierde el acceso al instante, aunque lo tenga abierto en ese momento.</p>
+  ${lista.length?lista.map(d=>`<div class="row" style="align-items:center;margin-bottom:8px;gap:8px">
+    <div style="flex:1;min-width:0">
+      <b>${(d.nombre||"Equipo").replace(/</g,"&lt;")}</b>${d.id===(DEVICE&&DEVICE.id)?' <span class="pill live">este equipo</span>':''}
+      <div class="muted" style="font-size:12px">${(d.equipo||"").replace(/</g,"&lt;")} · activado ${f(d.desde)}</div>
+      <div class="muted" style="font-size:12px">última vez: ${f(d.visto)}</div>
+    </div>
+    ${d.id===(DEVICE&&DEVICE.id)?'':`<button class="btn btn-danger btn-sm" onclick="revocarDevice('${d.id}','${(d.nombre||"").replace(/'/g,"")}')">Retirar</button>`}
+  </div>`).join(""):'<div class="note">Todavía no hay equipos registrados.</div>'}
+  <div class="note" style="margin-top:12px">El código de activación no está guardado en este archivo: solo su huella.
+     Para cambiarlo hay que generar una versión nueva de la herramienta.</div>
+  <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="dashOpen=false;closeModal()">Listo</button>`);
+}
+window.revocarDevice=(id,nombre)=>{
+  if(confirm(`¿Retirar el acceso del equipo "${nombre}"?\n\nDejará de funcionar de inmediato. Podrá volver a entrar solo si le das el código otra vez.`)){
+    DB.delDevice(id);
+  }
+};
 window.openSettings=()=>{
   modal(`<h2 style="margin:0 0 12px">Ajustes del taller</h2>
     <div class="two">
@@ -494,124 +856,166 @@ window.saveSettings=()=>{
 };
 
 /* ---------- TABLERO ---------- */
+async function getChart(){ if(!ChartLib){ try{const m=await import("https://esm.sh/chart.js@4.4.1/auto");ChartLib=m.default;}catch(e){console.error("Chart.js no disponible",e);return null;} } return ChartLib; }
+function destroyCharts(){ chartInstances.forEach(c=>{try{c.destroy();}catch(e){}}); chartInstances=[]; }
+
 function renderDash(){
-  const ords=ORDERS.filter(orderInPeriod);
-  const ordIds=new Set(ords.map(o=>o.id));
-  const jobs=JOBS.filter(j=>ordIds.has(j.orderId));
-  const fact=jobs.filter(j=>j.horasFacturadas!=null);
-  const MO=fact.reduce((s,j)=>s+billed(j),0), REP=fact.reduce((s,j)=>s+num(j.valorRepuestos),0), EXT=fact.reduce((s,j)=>s+num(j.valorServicioExterno),0);
+  destroyCharts();
+  const hist=histInPeriod();
+  const tecMode=dashTec!=="all";
+  // live: órdenes en periodo (con técnico filtrado)
+  let liveOrders=ORDERS.filter(orderInPeriod);
+  if(tecMode) liveOrders=liveOrders.filter(o=>jobsOf(o.id).some(j=>j.tecnicoId===dashTec));
+  const liveOrdIds=new Set(liveOrders.map(o=>o.id));
+  let liveJobs=JOBS.filter(j=>liveOrdIds.has(j.orderId));
+  if(tecMode) liveJobs=liveJobs.filter(j=>j.tecnicoId===dashTec);
+  const facOrders=liveOrders.filter(o=>o.facturadoAt);
+  // MO live (de trabajos facturados)
+  const liveMO=liveJobs.filter(j=>{const o=ORDERS.find(x=>x.id===j.orderId);return o&&o.facturadoAt;}).reduce((s,j)=>s+billed(j),0);
+  const liveREP=tecMode?0:facOrders.reduce((s,o)=>s+num(o.valorRepuestos),0);
+  const liveEXT=tecMode?0:facOrders.reduce((s,o)=>s+num(o.valorServicioExterno),0);
+  // histórico (sin técnico)
+  const histMO=tecMode?0:hist.reduce((s,r)=>s+r.mo,0);
+  const histREP=tecMode?0:hist.reduce((s,r)=>s+r.rep,0);
+  const histAutos=tecMode?0:hist.reduce((s,r)=>s+r.autos,0);
+  const histTOT=tecMode?0:hist.reduce((s,r)=>s+r.tot,0);
+  const histPermW=tecMode?0:hist.reduce((s,r)=>s+r.permDias*r.autos,0);
+  // totales
+  const MO=histMO+liveMO, REP=histREP+liveREP, EXT=liveEXT;
+  const liveAutos=liveOrders.filter(o=>jobsOf(o.id).length>0).length;
+  const autos=histAutos+liveAutos;
   const TOT=MO+REP+EXT;
-  const autos=ords.filter(o=>jobsOf(o.id).length>0).length;
   const ticket=autos?TOT/autos:0;
   const mixMO=TOT?MO/TOT*100:0;
-  const delivered=ords.filter(o=>o.salidaAt);
-  const permH=delivered.length?delivered.reduce((s,o)=>s+(o.salidaAt-o.ingresoAt)/3600000,0)/delivered.length:0;
-  // marcas/modelos
-  const marcas={},modelos={}; let hk=0;
-  ords.forEach(o=>{const m=(o.marca||"—").toUpperCase();marcas[m]=(marcas[m]||0)+1;const md=((o.marca||"")+" "+(o.modelo||"")).trim().toUpperCase()||"—";modelos[md]=(modelos[md]||0)+1;if(m==="HYUNDAI"||m==="KIA")hk++;});
-  const pHK=ords.length?hk/ords.length*100:0;
-  const marcasArr=Object.entries(marcas).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  const modelosArr=Object.entries(modelos).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  const tipos=["Express","Mantenimiento","Especializado"]; const tipoCount=tipos.map(tp=>fact.filter(j=>j.tipo===tp).length);
-  // por técnico
-  const disp=num(SET.horasDisponibles)*weeksInPeriod();
-  const porTec=TECHS.map(t=>{
-    const js=jobs.filter(j=>j.tecnicoId===t.id);
-    const fj=js.filter(j=>j.horasFacturadas!=null);
-    const real=js.reduce((s,j)=>s+jobReal(j),0);
-    const estandar=js.reduce((s,j)=>s+num(j.horasAsignadas),0);
-    const mo=fj.reduce((s,j)=>s+billed(j),0);
-    const mou=disp?real/disp:0, ef=real>0?estandar/real:0, prod=ef*mou;
-    return {nombre:t.nombre,n:js.length,mo,real,estandar,mou,ef,prod};
-  }).filter(x=>x.n>0).sort((a,b)=>b.mo-a.mo);
+  const liveDelivered=liveOrders.filter(o=>o.salidaAt);
+  const livePermW=liveDelivered.reduce((s,o)=>s+(o.salidaAt-o.ingresoAt)/86400000,0);
+  const permDias=(autos)?((histPermW+livePermW)/( histAutos + liveDelivered.length || 1)):0;
+  // productividad taller (solo live)
+  const disp=num(SET.horasDisponibles)*weeksInPeriod()*(tecMode?1:TECHS.filter(t=>t.activo).length||1);
+  const realTot=liveJobs.reduce((s,j)=>s+jobReal(j),0);
+  const estTot=liveJobs.reduce((s,j)=>s+num(j.horasAsignadas),0);
+  const mouTaller=disp?realTot/disp*100:0;
+  const eficTaller=realTot>0?estTot/realTot*100:0;
+  const prodTaller=mouTaller*eficTaller/100;
   // metas
-  const metaFac=metaFactPeriodo();
-  const facPct=metaFac?Math.min(100,TOT/metaFac*100):0;
-  // donut mix
-  const mixRep=100-mixMO;
-  const donut=`background:conic-gradient(var(--azul-2) 0 ${mixMO}%, var(--oro) ${mixMO}% 100%)`;
-  // trend (por mes del año seleccionado / por año si todo)
-  let trend=[];
-  if(dashPeriod==="todo"){
-    const byYear={}; ORDERS.forEach(o=>{const y=new Date(o.ingresoAt||o.createdAt).getFullYear();byYear[y]=byYear[y]||0;jobsOf(o.id).filter(j=>j.horasFacturadas!=null).forEach(j=>byYear[y]+=jobTotal(j));});
-    trend=Object.keys(byYear).sort().map(y=>({lab:y,val:byYear[y],cur:false}));
-  } else {
-    const meses=["E","F","M","A","M","J","J","A","S","O","N","D"]; const yr=dashPeriod==="anio"?dashYear:new Date().getFullYear();
-    const byM=Array(12).fill(0);
-    ORDERS.filter(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()===yr).forEach(o=>jobsOf(o.id).filter(j=>j.horasFacturadas!=null).forEach(j=>byM[new Date(o.ingresoAt||o.createdAt).getMonth()]+=jobTotal(j)));
-    const cm=new Date().getMonth();
-    trend=byM.map((v,i)=>({lab:meses[i],val:v,cur:yr===new Date().getFullYear()&&i===cm}));
+  const metaFac=metaFactPeriodo(); const facPct=metaFac?Math.min(100,TOT/metaFac*100):0;
+  // % HK (hist por año + live)
+  let hk=0, totMarca=0; const marcas={}, modelos={};
+  function addMarcaSet(setObj,mObj){for(const k in mObj){marcas[k]=(marcas[k]||0)+mObj[k];}}
+  if(!tecMode){
+    if(dashPeriod==="anio"){ if(HIST.marcasByYear[dashYear])addMarcaSet(0,HIST.marcasByYear[dashYear]); if(HIST.modelosByYear[dashYear])for(const k in HIST.modelosByYear[dashYear])modelos[k]=(modelos[k]||0)+HIST.modelosByYear[dashYear][k]; }
+    else if(dashPeriod==="todo"){ for(const y in HIST.marcasByYear)addMarcaSet(0,HIST.marcasByYear[y]); for(const y in HIST.modelosByYear)for(const k in HIST.modelosByYear[y])modelos[k]=(modelos[k]||0)+HIST.modelosByYear[y][k]; }
   }
-  const maxTrend=Math.max(1,...trend.map(t=>t.val));
-  const years=[...new Set(ORDERS.map(o=>new Date(o.ingresoAt||o.createdAt).getFullYear()))].sort((a,b)=>b-a);
+  liveOrders.forEach(o=>{const m=(o.marca||"—").toUpperCase();marcas[m]=(marcas[m]||0)+1;const md=((o.marca||"")+" "+(o.modelo||"")).trim().toUpperCase()||"—";modelos[md]=(modelos[md]||0)+1;});
+  for(const k in marcas){totMarca+=marcas[k];if(k==="HYUNDAI"||k==="KIA")hk+=marcas[k];}
+  const pHK=totMarca?hk/totMarca*100:0;
+  const marcasArr=Object.entries(marcas).sort((a,b)=>b[1]-a[1]);
+  const modelosArr=Object.entries(modelos).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  // tipo de servicio
+  const tipos=["Express","Mantenimiento","Especializado"]; const tipoCount={Express:0,Mantenimiento:0,Especializado:0};
+  if(!tecMode){ if(dashPeriod==="anio"&&HIST.tipoByYear[dashYear]){for(const k in HIST.tipoByYear[dashYear])if(tipoCount[k]!=null)tipoCount[k]+=HIST.tipoByYear[dashYear][k];} else if(dashPeriod==="todo"){for(const y in HIST.tipoByYear)for(const k in HIST.tipoByYear[y])if(tipoCount[k]!=null)tipoCount[k]+=HIST.tipoByYear[y][k];} }
+  liveJobs.forEach(j=>{if(tipoCount[j.tipo]!=null)tipoCount[j.tipo]++;});
+  // por técnico
+  const porTec=TECHS.map(t=>{
+    const js=JOBS.filter(j=>{const o=ORDERS.find(x=>x.id===j.orderId);return o&&orderInPeriod(o)&&j.tecnicoId===t.id;});
+    const real=js.reduce((s,j)=>s+jobReal(j),0); const est=js.reduce((s,j)=>s+num(j.horasAsignadas),0);
+    const mo=js.filter(j=>{const o=ORDERS.find(x=>x.id===j.orderId);return o&&o.facturadoAt;}).reduce((s,j)=>s+billed(j),0);
+    const dispT=num(SET.horasDisponibles)*weeksInPeriod();
+    const mou=dispT?real/dispT*100:0, ef=real>0?est/real*100:0, prod=mou*ef/100;
+    return {nombre:t.nombre,n:js.length,mo,mou,ef,prod};
+  }).filter(x=>x.n>0).sort((a,b)=>b.mo-a.mo);
+  // tendencia
+  let trendLabels=[], trendData=[];
+  if(dashPeriod==="todo"){
+    const yrs=allYears().sort();
+    trendLabels=yrs.map(String);
+    trendData=yrs.map(y=>{let v=HIST.monthly.filter(r=>r.y===y).reduce((s,r)=>s+r.tot,0);ORDERS.filter(o=>o.facturadoAt&&new Date(o.ingresoAt).getFullYear()===y).forEach(o=>{v+=jobsOf(o.id).reduce((s,j)=>s+billed(j),0)+num(o.valorRepuestos)+num(o.valorServicioExterno);});return +v.toFixed(0);});
+  } else {
+    const yr=dashPeriod==="anio"?dashYear:new Date().getFullYear();
+    trendLabels=MESES.slice();
+    const arr=Array(12).fill(0);
+    HIST.monthly.filter(r=>r.y===yr).forEach(r=>arr[r.m]+=r.tot);
+    ORDERS.filter(o=>o.facturadoAt&&new Date(o.ingresoAt).getFullYear()===yr).forEach(o=>{arr[new Date(o.ingresoAt).getMonth()]+=jobsOf(o.id).reduce((s,j)=>s+billed(j),0)+num(o.valorRepuestos)+num(o.valorServicioExterno);});
+    trendData=arr.map(v=>+v.toFixed(0));
+  }
+  const years=allYears();
+  const tecOpts=`<option value="all">Todo el taller</option>`+TECHS.map(t=>`<option value="${t.id}" ${dashTec===t.id?'selected':''}>${t.nombre}</option>`).join("");
 
   app.innerHTML=`
   <div class="sectiontitle">
-    <h2>Tablero</h2>
-    <div class="seg">
-      ${[["semana","Semana"],["mes","Mes"],["anio","Año"],["todo","Todos"]].map(([k,l])=>`<button class="${dashPeriod===k?'on':''}" onclick="dashPeriod='${k}';render()">${l}</button>`).join("")}
-      ${dashPeriod==="anio"&&years.length>1?`<select class="t" style="width:auto;margin-left:6px" onchange="dashYear=+this.value;render()">${years.map(y=>`<option value="${y}" ${y===dashYear?'selected':''}>${y}</option>`).join("")}</select>`:""}
+    <h2>Tablero ${tecMode?'· '+(TECHS.find(t=>t.id===dashTec)||{}).nombre:''}</h2>
+    <div class="row" style="gap:8px">
+      <div class="seg">
+        ${[["semana","Semana"],["mes","Mes"],["anio","Año"],["todo","Histórico"]].map(([k,l])=>`<button class="${dashPeriod===k?'on':''}" onclick="setPeriod('${k}')">${l}</button>`).join("")}
+      </div>
+      ${(dashPeriod==="anio")?`<select class="t" style="width:auto" onchange="setYear(this.value)">${years.map(y=>`<option value="${y}" ${y===dashYear?'selected':''}>${y}</option>`).join("")}</select>`:""}
+      <select class="t" style="width:auto" onchange="setDashTec(this.value)">${tecOpts}</select>
     </div>
   </div>
+  ${tecMode?'<div class="note" style="margin-top:0;margin-bottom:14px">Vista por técnico: muestra solo datos en vivo de la app (el histórico 2024–2026 no tiene desglose por técnico).</div>':''}
 
   <div class="kpis">
     <div class="kpi gold"><div class="lbl">Facturación total</div><div class="v">${money(TOT)}</div></div>
     <div class="kpi"><div class="lbl">Mano de obra</div><div class="v">${money(MO)} <small>${mixMO.toFixed(0)}%</small></div></div>
     <div class="kpi"><div class="lbl">Repuestos</div><div class="v">${money(REP)}</div></div>
     <div class="kpi"><div class="lbl">Servicio externo</div><div class="v">${money(EXT)}</div></div>
-    <div class="kpi"><div class="lbl">N° de autos</div><div class="v">${autos}</div></div>
+    <div class="kpi"><div class="lbl">Cantidad de autos</div><div class="v">${autos}</div></div>
     <div class="kpi"><div class="lbl">Ticket promedio</div><div class="v">${money(ticket)}</div></div>
-    <div class="kpi"><div class="lbl">Estadía promedio</div><div class="v">${(permH/24).toFixed(1)} <small>días</small></div></div>
-    <div class="kpi"><div class="lbl">Horas MO facturadas</div><div class="v">${(MO/num(SET.rate)).toFixed(0)} <small>h</small></div></div>
+    <div class="kpi"><div class="lbl">Estadía promedio</div><div class="v">${permDias.toFixed(1)} <small>días</small></div></div>
+    <div class="kpi gold"><div class="lbl">Productividad taller</div><div class="v">${prodTaller.toFixed(2)}<small>%</small></div></div>
   </div>
 
   <div class="sectiontitle" style="margin-top:18px"><h2 style="font-size:17px">Cumplimiento de metas</h2></div>
   <div class="goal">
     <div class="goalcard"><div class="t">Facturación vs meta</div><div class="v">${money(TOT)}</div><div class="bar"><i style="width:${facPct}%;background:${TOT>=metaFac?'var(--ok)':'var(--azul-2)'}"></i></div><div class="meta">Meta ${money(metaFac)} · <b class="check ${TOT>=metaFac?'ok':'no'}">${facPct.toFixed(0)}%</b></div></div>
     <div class="goalcard"><div class="t">Mezcla mano de obra</div><div class="v">${mixMO.toFixed(0)}%</div><div class="bar"><i style="width:${Math.min(100,mixMO)}%;background:${mixMO>=num(SET.metaMixMO)?'var(--ok)':'var(--warn)'}"></i></div><div class="meta">Meta ${SET.metaMixMO}% · <b class="check ${mixMO>=num(SET.metaMixMO)?'ok':'no'}">${mixMO>=num(SET.metaMixMO)?'cumple':'por debajo'}</b></div></div>
-    <div class="goalcard"><div class="t">Hyundai + Kia (somos expertos)</div><div class="v">${pHK.toFixed(0)}%</div><div class="bar"><i style="width:${Math.min(100,pHK)}%;background:${pHK>=num(SET.metaMarcasExpertas)?'var(--ok)':'var(--danger)'}"></i></div><div class="meta">Meta ${SET.metaMarcasExpertas}% · <b class="check ${pHK>=num(SET.metaMarcasExpertas)?'ok':'no'}">${pHK>=num(SET.metaMarcasExpertas)?'cumple':'no cumple'}</b></div></div>
+    <div class="goalcard"><div class="t">Hyundai + Kia (expertos)</div><div class="v">${pHK.toFixed(0)}%</div><div class="bar"><i style="width:${Math.min(100,pHK)}%;background:${pHK>=num(SET.metaMarcasExpertas)?'var(--ok)':'var(--danger)'}"></i></div><div class="meta">Meta ${SET.metaMarcasExpertas}% · <b class="check ${pHK>=num(SET.metaMarcasExpertas)?'ok':'no'}">${pHK>=num(SET.metaMarcasExpertas)?'cumple':'no cumple'}</b></div></div>
   </div>
 
   <div class="row" style="margin-top:18px">
-    <div class="panel pad" style="flex:1.3;min-width:300px">
-      <span class="eyebrow">Facturación</span><h2 style="margin:2px 0 10px">${dashPeriod==="todo"?"Por año":"Por mes · "+(dashPeriod==="anio"?dashYear:new Date().getFullYear())}</h2>
-      <div class="trend">${trend.map(t=>`<div class="col ${t.cur?'cur':''}"><i style="height:${t.val/maxTrend*120}px" title="${money(t.val)}"></i><span class="lab">${t.lab}</span></div>`).join("")}</div>
+    <div class="panel pad" style="flex:1.5;min-width:320px">
+      <span class="eyebrow">Evolución</span><h2 style="margin:2px 0 10px">Facturación ${dashPeriod==="todo"?"por año":"por mes · "+(dashPeriod==="anio"?dashYear:new Date().getFullYear())}</h2>
+      <div class="chartbox"><canvas id="chTrend"></canvas></div>
     </div>
     <div class="panel pad" style="flex:1;min-width:240px">
-      <span class="eyebrow">Mezcla</span><h2 style="margin:2px 0 10px">MO vs Repuestos</h2>
-      <div class="row" style="align-items:center"><div class="donut" style="${donut}"></div>
-        <div class="legend"><div><span class="dot" style="background:var(--azul-2)"></span> Mano de obra ${mixMO.toFixed(0)}%</div><div><span class="dot" style="background:var(--oro)"></span> Repuestos+externo ${mixRep.toFixed(0)}%</div></div></div>
+      <span class="eyebrow">Composición</span><h2 style="margin:2px 0 10px">MO · Repuestos · Externo</h2>
+      <div class="chartbox sm"><canvas id="chMix"></canvas></div>
     </div>
+  </div>
+
+  <div class="row" style="margin-top:18px">
+    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Marcas</span><h2 style="margin:2px 0 10px">Las que más visitan</h2><div class="chartbox sm"><canvas id="chMarcas"></canvas></div></div>
+    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Modelos</span><h2 style="margin:2px 0 10px">Top modelos</h2><div class="chartbox sm"><canvas id="chModelos"></canvas></div></div>
+    <div class="panel pad" style="flex:1;min-width:240px"><span class="eyebrow">Servicio</span><h2 style="margin:2px 0 10px">Tipo de servicio</h2><div class="chartbox sm"><canvas id="chTipo"></canvas></div></div>
   </div>
 
   <div class="panel pad" style="margin-top:18px">
-    <span class="eyebrow">Por técnico</span><h2 style="margin:2px 0 12px">Productividad y facturación</h2>
+    <span class="eyebrow">Por técnico (datos en vivo)</span><h2 style="margin:2px 0 12px">Productividad y facturación</h2>
     <div style="overflow-x:auto"><table>
-      <tr><th>Técnico</th><th class="n">Autos</th><th class="n">MO fact.</th><th>vs meta</th><th class="n">MOU</th><th class="n">Eficiencia</th><th class="n">Productividad</th></tr>
-      ${porTec.length?porTec.map(t=>{const metaInd=num(SET.metaIndividual)*(dashPeriod==="semana"?1/4.345:dashPeriod==="mes"?1:dashPeriod==="anio"?12:12);const mp=metaInd?Math.min(100,t.mo/metaInd*100):0;const cls=t.mou<0.4?"low":t.mou<0.6?"mid":"";
-        return `<tr><td>${t.nombre}</td><td class="n">${t.n}</td><td class="n">${money(t.mo)}</td>
-          <td class="util ${cls}" style="min-width:90px"><div class="bar"><i style="width:${mp}%"></i></div><small class="muted">${mp.toFixed(0)}%</small></td>
-          <td class="n">${(t.mou*100).toFixed(0)}%</td><td class="n">${t.real>0?(t.ef*100).toFixed(0)+"%":"—"}</td><td class="n"><b style="color:var(--${t.prod>=0.6?'ok':t.prod>=0.4?'warn':'danger'})">${(t.prod*100).toFixed(0)}%</b></td></tr>`;
-      }).join(""):`<tr><td colspan="7" class="muted" style="text-align:center;padding:18px">Sin datos en el periodo.</td></tr>`}
+      <tr><th>Técnico</th><th class="n">Trabajos</th><th class="n">MO fact.</th><th class="n">MOU</th><th class="n">Eficiencia</th><th class="n">Productividad</th></tr>
+      ${porTec.length?porTec.map(t=>`<tr><td>${t.nombre}</td><td class="n">${t.n}</td><td class="n">${money(t.mo)}</td><td class="n">${t.mou.toFixed(2)}%</td><td class="n">${t.ef>0?t.ef.toFixed(2)+"%":"—"}</td><td class="n"><b style="color:var(--${t.prod>=60?'ok':t.prod>=40?'warn':'danger'})">${t.prod.toFixed(2)}%</b></td></tr>`).join(""):`<tr><td colspan="6" class="muted" style="text-align:center;padding:18px">Sin datos en vivo en el periodo.</td></tr>`}
+      <tr style="border-top:2px solid var(--line)"><td><b>TOTAL TALLER</b></td><td class="n">${liveJobs.length}</td><td class="n"><b>${money(liveMO)}</b></td><td class="n"><b>${mouTaller.toFixed(2)}%</b></td><td class="n"><b>${eficTaller>0?eficTaller.toFixed(2)+"%":"—"}</b></td><td class="n"><b style="color:var(--${prodTaller>=60?'ok':prodTaller>=40?'warn':'danger'})">${prodTaller.toFixed(2)}%</b></td></tr>
     </table></div>
-    <div class="note">MOU = horas trabajadas ÷ disponibles (${num(SET.horasDisponibles)} h/sem). Eficiencia = horas estándar ÷ reales. Productividad = Eficiencia × MOU. Objetivo de productividad: 60%+.</div>
-  </div>
-
-  <div class="row" style="margin-top:18px">
-    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Marcas</span><h2 style="margin:2px 0 10px">Top atendidas</h2>
-      ${barsBlock(marcasArr,ords.length)}</div>
-    <div class="panel pad" style="flex:1;min-width:260px"><span class="eyebrow">Modelos</span><h2 style="margin:2px 0 10px">Top modelos</h2>
-      ${barsBlock(modelosArr,ords.length)}</div>
-    <div class="panel pad" style="flex:1;min-width:240px"><span class="eyebrow">Tipo de servicio</span><h2 style="margin:2px 0 10px">Mezcla</h2>
-      ${tipos.map((tp,i)=>{const tot=tipoCount.reduce((a,b)=>a+b,0)||1;const p=tipoCount[i]/tot*100;return `<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${tp}</span><b>${tipoCount[i]} · ${p.toFixed(0)}%</b></div><div class="bar"><i style="width:${p}%;background:var(--${tp==='Especializado'?'ok':tp==='Mantenimiento'?'oro':'azul-2'})"></i></div></div>`;}).join("")}</div>
+    <div class="note">MOU = horas trabajadas ÷ disponibles × 100. Eficiencia = horas asignadas ÷ reales × 100 (>100% = más rápido que lo asignado). Productividad = MOU × Eficiencia ÷ 100.</div>
   </div>
 
   <div class="panel pad" style="margin-top:18px">
     <div class="sectiontitle"><h2 style="font-size:17px">Respaldo / Exportar</h2><button class="btn btn-gold" onclick="exportXLSX()">⬇ Descargar Excel (.xlsx)</button></div>
-    <p class="muted" style="margin:0;font-size:13px">Descarga todo el historial (órdenes, trabajos y resumen por técnico) en una hoja de cálculo, para respaldo o análisis externo. Se une a tu base por número de OT.</p>
+    <p class="muted" style="margin:0;font-size:13px">Descarga el historial en vivo (órdenes, trabajos y resumen por técnico). Se une a tu base por número de OT.</p>
   </div>`;
+  drawCharts({trendLabels,trendData,MO,REP,EXT,marcasArr,modelosArr,tipoCount});
 }
-function barsBlock(arr,tot){tot=tot||1;return arr.length?arr.map(([k,c])=>{const p=c/tot*100;return `<div style="margin-bottom:9px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${k}</span><b>${c} · ${p.toFixed(0)}%</b></div><div class="bar"><i style="width:${p}%"></i></div></div>`;}).join(""):'<p class="muted">Sin datos.</p>';}
+
+async function drawCharts(d){
+  const Chart=await getChart(); if(!Chart)return;
+  const azul="#1D4ED8",oro="#E6B229",ok="#16A34A",grays=["#0E2A66","#1D4ED8","#E6B229","#16A34A","#94A0B8","#D14343","#7C3AED","#0891B2","#B8860B","#475569"];
+  const mk=(id,cfg)=>{const el=document.getElementById(id);if(el){chartInstances.push(new Chart(el,cfg));}};
+  mk("chTrend",{type:"bar",data:{labels:d.trendLabels,datasets:[{label:"Facturación $",data:d.trendData,backgroundColor:d.trendLabels.map((_,i)=>i===new Date().getMonth()&&dashPeriod!=="todo"?oro:azul),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>"$"+v.toLocaleString()}}}}});
+  mk("chMix",{type:"doughnut",data:{labels:["Mano de obra","Repuestos","Servicio externo"],datasets:[{data:[+d.MO.toFixed(0),+d.REP.toFixed(0),+d.EXT.toFixed(0)],backgroundColor:[azul,oro,ok]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}}}}});
+  mk("chMarcas",{type:"pie",data:{labels:d.marcasArr.slice(0,7).map(x=>x[0]),datasets:[{data:d.marcasArr.slice(0,7).map(x=>x[1]),backgroundColor:grays}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"right",labels:{boxWidth:11,font:{size:10}}}}}});
+  mk("chModelos",{type:"bar",data:{labels:d.modelosArr.map(x=>x[0]),datasets:[{label:"Autos",data:d.modelosArr.map(x=>x[1]),backgroundColor:azul,borderRadius:4}]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+  mk("chTipo",{type:"doughnut",data:{labels:["Express","Mantenimiento","Especializado"],datasets:[{data:[d.tipoCount.Express,d.tipoCount.Mantenimiento,d.tipoCount.Especializado],backgroundColor:[azul,oro,ok]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}}}}});
+}
 
 /* ---------- EXPORT XLSX ---------- */
 window.exportXLSX=async()=>{
@@ -619,23 +1023,19 @@ window.exportXLSX=async()=>{
   try{ XLSX=await import("https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs"); }
   catch(e){ exportCSV(); return; }
   const trabajos=JOBS.map(j=>{const o=ORDERS.find(x=>x.id===j.orderId)||{};const t=TECHS.find(x=>x.id===j.tecnicoId)||{};
-    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Anio:o.anio,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"",
-      Tecnico:t.nombre||"",ManoDeObra:j.moDesc,Tipo:j.tipo,HorasEstandar:j.horasAsignadas,HorasReales:+jobReal(j).toFixed(2),HorasFacturadas:j.horasFacturadas??"",ValorMO:+billed(j).toFixed(2),Repuestos:num(j.valorRepuestos),ServicioExterno:num(j.valorServicioExterno),Total:+jobTotal(j).toFixed(2),Estado:labelEstado(j.estado)};});
-  const ordenes=ORDERS.map(o=>{const js=jobsOf(o.id);const tot=js.reduce((s,j)=>s+jobTotal(j),0);const perm=o.salidaAt?((o.salidaAt-o.ingresoAt)/86400000):"";
-    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"En taller",PermanenciaDias:perm===""?"":+perm.toFixed(2),Trabajos:js.length,TotalOT:+tot.toFixed(2)};});
-  const disp=num(SET.horasDisponibles)*52;
-  const resumen=TECHS.map(t=>{const js=JOBS.filter(j=>j.tecnicoId===t.id);const real=js.reduce((s,j)=>s+jobReal(j),0);const est=js.reduce((s,j)=>s+num(j.horasAsignadas),0);const mo=js.filter(j=>j.horasFacturadas!=null).reduce((s,j)=>s+billed(j),0);
-    return {Tecnico:t.nombre,Trabajos:js.length,MO_Facturada:+mo.toFixed(2),HorasReales:+real.toFixed(2),HorasEstandar:+est.toFixed(2),MOU_pct:+(disp?real/disp*100:0).toFixed(1),Eficiencia_pct:+(real>0?est/real*100:0).toFixed(1),Productividad_pct:+(disp&&real>0?(est/real)*(real/disp)*100:0).toFixed(1)};});
+    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"",
+      Tecnico:t.nombre||"",ManoDeObra:j.moDesc,Tipo:j.tipo,HorasAsignadas:j.horasAsignadas,HorasReales:+jobReal(j).toFixed(2),ValorMO:+billed(j).toFixed(2),Pago30:+jobPay(j).toFixed(2),Estado:labelEstado(j.estado)};});
+  const ordenes=ORDERS.map(o=>{const js=jobsOf(o.id);const mo=js.reduce((s,j)=>s+billed(j),0);const tot=mo+num(o.valorRepuestos)+num(o.valorServicioExterno);const perm=o.salidaAt?((o.salidaAt-o.ingresoAt)/86400000):"";
+    return {OT:o.ot,Placa:o.placa,Marca:o.marca,Modelo:o.modelo,Cliente:o.cliente,Ingreso:o.ingresoAt?new Date(o.ingresoAt).toLocaleString("es-EC"):"",Salida:o.salidaAt?new Date(o.salidaAt).toLocaleString("es-EC"):"En taller",PermanenciaDias:perm===""?"":+perm.toFixed(2),ManoDeObra:+mo.toFixed(2),Repuestos:num(o.valorRepuestos),ServicioExterno:num(o.valorServicioExterno),TotalOT:+tot.toFixed(2),Facturado:o.facturadoAt?"Sí":"No"};});
   const wb=XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(trabajos),"Trabajos");
   XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(ordenes),"Ordenes");
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(resumen),"Resumen Tecnico");
   XLSX.writeFile(wb,"productividad_byp_"+new Date().toISOString().slice(0,10)+".xlsx");
 };
 function exportCSV(){
-  const head=["OT","Placa","Marca","Modelo","Cliente","Tecnico","ManoDeObra","Tipo","HEstandar","HReales","HFacturadas","ValorMO","Repuestos","ServExterno","Total","Estado"];
+  const head=["OT","Placa","Marca","Modelo","Cliente","Tecnico","ManoDeObra","Tipo","HAsignadas","HReales","ValorMO","Estado"];
   const rows=JOBS.map(j=>{const o=ORDERS.find(x=>x.id===j.orderId)||{};const t=TECHS.find(x=>x.id===j.tecnicoId)||{};
-    return [o.ot,o.placa,o.marca,o.modelo,o.cliente,t.nombre||"",j.moDesc,j.tipo,j.horasAsignadas,jobReal(j).toFixed(2),j.horasFacturadas??"",billed(j).toFixed(2),num(j.valorRepuestos),num(j.valorServicioExterno),jobTotal(j).toFixed(2),labelEstado(j.estado)].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",");});
+    return [o.ot,o.placa,o.marca,o.modelo,o.cliente,t.nombre||"",j.moDesc,j.tipo,j.horasAsignadas,jobReal(j).toFixed(2),billed(j).toFixed(2),labelEstado(j.estado)].map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",");});
   const csv="\uFEFF"+[head.join(","),...rows].join("\n");const b=new Blob([csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="productividad_byp.csv";a.click();
 }
 
